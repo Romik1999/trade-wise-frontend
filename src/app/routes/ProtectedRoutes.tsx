@@ -1,11 +1,12 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import { PUBLIC_PAGES } from './index';
 import Layout from '../../shared/ui/layout/ui/Layout';
+import { getAccessToken } from '../../shared/api/axios';
 
 export const ProtectedRoutes = () => {
-  const cookies = { accessToken: '123456' };
+  const accessToken = getAccessToken();
 
-  if (!cookies.accessToken) return <Navigate to={PUBLIC_PAGES.LOGIN} replace />;
+  if (!accessToken) return <Navigate to={PUBLIC_PAGES.LOGIN} replace />;
 
   return (
     <Layout>
