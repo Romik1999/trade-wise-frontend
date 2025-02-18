@@ -1,5 +1,7 @@
 import React from 'react';
 import Box from '@mui/material/Box';
+import { NavLink } from 'react-router-dom';
+import { PRIVATE_PAGES } from '../../../app/routes';
 
 const Header = () => {
   return (
@@ -9,7 +11,7 @@ const Header = () => {
       height="60px"
       sx={{ padding: '10px', borderRadius: '10px', backgroundColor: 'white' }}
     >
-      <Box>Logo</Box>
+      <NavLink to={PRIVATE_PAGES.HOME}>Logo</NavLink>
       <Box>User</Box>
     </Box>
   );

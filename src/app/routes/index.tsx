@@ -9,6 +9,7 @@ import { ProtectedRoutes } from './ProtectedRoutes';
 import { RedirectIfAuth } from './RedirectIfAuth';
 import Products from '../../pages/products';
 import Components from '../../pages/components';
+import Settings from '../../pages/settings';
 
 export const PUBLIC_PAGES = {
   LOGIN: '/login',
@@ -21,6 +22,7 @@ export const PRIVATE_PAGES = {
   PROFILE: '/profile',
   PRODUCTS: '/products',
   COMPONENTS: '/components',
+  SETTINGS: '/settings',
 };
 
 const Router = createBrowserRouter([
@@ -55,6 +57,10 @@ const Router = createBrowserRouter([
       {
         path: PRIVATE_PAGES.COMPONENTS,
         element: <Components />
+      },
+      {
+        path: PRIVATE_PAGES.SETTINGS,
+        element: <Settings />
       },
     ]
   },
