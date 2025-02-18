@@ -4,12 +4,13 @@ import Box from '@mui/material/Box';
 const Header = () => {
   return (
     <Box
-      padding="10px"
-      borderBottom="1px solid grey"
-      height="80px"
-      sx={{ backgroundColor: 'white' }}
+      display="flex"
+      justifyContent="space-between"
+      height="60px"
+      sx={{ padding: '10px', borderRadius: '10px', backgroundColor: 'white' }}
     >
-      HEADER
+      <Box>Logo</Box>
+      <Box>User</Box>
     </Box>
   );
 };

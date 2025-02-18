@@ -3,7 +3,10 @@ import { Box } from '@mui/material';
 
 const Sidebar = () => {
   return (
-    <Box width="60px" display="flex" flexDirection="column">
+    <Box
+      width="300px"
+      sx={{ padding: '10px', borderRadius: '10px', backgroundColor: 'white' }}
+    >
       SIDEBAR
     </Box>
   );
