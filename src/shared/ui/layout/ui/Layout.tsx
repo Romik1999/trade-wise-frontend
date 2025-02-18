@@ -13,7 +13,7 @@ const Layout: FC<LayoutProps> = ({children}) => {
             <Header/>
             <Box display="flex" height="calc(100% - 80px)">
                 <Sidebar/>
-                <Box component="section" display="flex" width="calc(100% - 60px)" borderLeft="1px solid grey">
+                <Box component="section" display="flex" width="calc(100% - 60px)">
                     {children}
                 </Box>
             </Box>
