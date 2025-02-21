@@ -9,10 +9,10 @@ export const fetchComponentById = async (id: string) => {
   return await axiosClassic.get(`${API_URL}/component/${id}`);
 };
 
-export const patchComponent = async (id: number, data: any) => {
+export const patchComponent = async (id: string, data: any) => {
   return await axiosClassic.patch(`${API_URL}/component/${id}`, data);
 }
 
-export const deleteComponent = async (id: number) => {
+export const deleteComponent = async (id: string) => {
   return await axiosClassic.delete(`${API_URL}/component/${id}`);
 }

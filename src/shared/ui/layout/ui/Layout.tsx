@@ -16,6 +16,7 @@ const Layout: FC<LayoutProps> = ({ children }) => {
       gap="10px"
       display="flex"
       flexDirection="column"
+      overflowX="hidden"
     >
       <Header />
       <Box display="flex" height="calc(100% - 80px)" gap="10px">
