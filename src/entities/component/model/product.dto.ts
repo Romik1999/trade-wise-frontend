@@ -1,4 +1,5 @@
 export type ComponentDTO = {
+  id?: string;
   title: string;
   description?: string;
   price: number;
@@ -10,11 +11,13 @@ export type ComponentDTO = {
   width: number;
   height: number;
   diameter: number;
-}
+};
 
-export type EnumUnitMeasure = {
-  PIECES: 'PIECES',
-  PACKAGING: 'PACKAGING',
-  GRAMS: 'GRAMS',
-  METERS: 'METERS'
-}
+export type EnumUnitMeasure = 'PIECES' | 'PACKAGING' | 'GRAMS' | 'METERS';
+
+export const EnumUnitMeasureTranslate = {
+  PIECES: 'Шт',
+  PACKAGING: 'Упаковка',
+  GRAMS: 'Грамм',
+  METERS: 'Метр',
+};

@@ -6,10 +6,14 @@ import {
   TableCell,
   TableContainer,
   TableHead,
-  TableRow
+  TableRow,
 } from '@mui/material';
 import React from 'react';
 import { useComponent } from '../model';
+import { BACK_URL } from '../../../constants';
+import { NavLink } from 'react-router-dom';
+import ImagePreview from '../../../shared/ui/image-preview';
+import { ComponentDTO, EnumUnitMeasureTranslate } from '../model/product.dto';
 
 const ComponentTable = () => {
   const { componentsList, isComponentsListLoading } = useComponent();
@@ -18,63 +22,53 @@ const ComponentTable = () => {
     return <CircularProgress size="30px" />;
   }
 
+  if (!componentsList) {
+    return 'Данных не найдено';
+  }
+
   return (
     <Box overflow="hidden">
-      <TableContainer sx={{ maxHeight: 440 }}>
+      <TableContainer sx={{ maxHeight: '100%' }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
-              <TableCell>title</TableCell>
-              <TableCell>description</TableCell>
-              <TableCell>price</TableCell>
-              <TableCell>images</TableCell>
-              <TableCell>seller_link</TableCell>
-              <TableCell>remainder</TableCell>
-              <TableCell>unit_measure</TableCell>
-              <TableCell>length</TableCell>
-              <TableCell>width</TableCell>
-              <TableCell>height</TableCell>
-              <TableCell>diameter</TableCell>
+              <TableCell>Название</TableCell>
+              <TableCell>Описание</TableCell>
+              <TableCell>Закупочная цена, р</TableCell>
+              <TableCell>Изображение</TableCell>
+              <TableCell>Ссылка на продавца</TableCell>
+              <TableCell>Остаток</TableCell>
+              <TableCell>Ед. измерения</TableCell>
+              <TableCell>Длинна</TableCell>
+              <TableCell>Ширина</TableCell>
+              <TableCell>Высота</TableCell>
+              <TableCell>Диаметр</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {componentsList.map((componentsItem) => {
+            {componentsList.map((componentsItem: ComponentDTO) => {
               return (
                 <TableRow hover key={componentsItem.id}>
+                  <TableCell>{componentsItem.title}</TableCell>
+                  <TableCell>{componentsItem.description}</TableCell>
+                  <TableCell>{componentsItem.price}</TableCell>
                   <TableCell>
-                    {componentsItem.title}
+                    <ImagePreview
+                      imageUrl={`${BACK_URL}${componentsItem.images[0]}`}
+                      altText={componentsItem.title}
+                    />
                   </TableCell>
                   <TableCell>
-                    {componentsItem.description}
+                    <NavLink to={componentsItem.seller_link} target="_blank">
+                      Ссылка
+                    </NavLink>
                   </TableCell>
-                  <TableCell>
-                    {componentsItem.price}
-                  </TableCell>
-                  <TableCell>
-                    {componentsItem.images}
-                  </TableCell>
-                  <TableCell>
-                    {componentsItem.seller_link}
-                  </TableCell>
-                  <TableCell>
-                    {componentsItem.remainder}
-                  </TableCell>
-                  <TableCell>
-                    {componentsItem.unit_measure}
-                  </TableCell>
-                  <TableCell>
-                    {componentsItem.length}
-                  </TableCell>
-                  <TableCell>
-                    {componentsItem.width}
-                  </TableCell>
-                  <TableCell>
-                    {componentsItem.height}
-                  </TableCell>
-                  <TableCell>
-                    {componentsItem.diameter}
-                  </TableCell>
-
+                  <TableCell>{componentsItem.remainder}</TableCell>
+                  <TableCell>{EnumUnitMeasureTranslate[componentsItem.unit_measure]}</TableCell>
+                  <TableCell>{componentsItem.length}</TableCell>
+                  <TableCell>{componentsItem.width}</TableCell>
+                  <TableCell>{componentsItem.height}</TableCell>
+                  <TableCell>{componentsItem.diameter}</TableCell>
                 </TableRow>
               );
             })}
