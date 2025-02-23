@@ -10,6 +10,7 @@ import { RedirectIfAuth } from './RedirectIfAuth';
 import Products from '../../pages/products';
 import Components from '../../pages/components';
 import Settings from '../../pages/settings';
+import ComponentDetail from '../../entities/component/ui/ComponentDetail';
 
 export const PUBLIC_PAGES = {
   LOGIN: '/login',
@@ -22,6 +23,7 @@ export const PRIVATE_PAGES = {
   PROFILE: '/profile',
   PRODUCTS: '/products',
   COMPONENTS: '/components',
+  COMPONENT: '/components/:componentId',
   SETTINGS: '/settings',
 };
 
@@ -56,7 +58,11 @@ const Router = createBrowserRouter([
       },
       {
         path: PRIVATE_PAGES.COMPONENTS,
-        element: <Components />
+        element: <Components />,
+      },
+      {
+        path: PRIVATE_PAGES.COMPONENT,
+        element: <ComponentDetail />,
       },
       {
         path: PRIVATE_PAGES.SETTINGS,

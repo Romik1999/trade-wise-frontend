@@ -13,7 +13,13 @@ const Sidebar = () => {
         <ListItem disablePadding>
           <NavLink
             to={PRIVATE_PAGES.PRODUCTS}
-            style={{ width: '100%', textDecoration: 'none', color: 'inherit' }}
+            style={({ isActive }) => ({
+              width: '100%',
+              textDecoration: 'none',
+              color: 'inherit',
+              backgroundColor: isActive ? 'rgba(27, 89, 248, 0.1)' : 'transparent',
+              borderRadius: '10px',
+            })}
           >
             <ListItemButton>PRODUCTS</ListItemButton>
           </NavLink>
@@ -21,7 +27,13 @@ const Sidebar = () => {
         <ListItem disablePadding>
           <NavLink
             to={PRIVATE_PAGES.COMPONENTS}
-            style={{ width: '100%', textDecoration: 'none', color: 'inherit' }}
+            style={({ isActive }) => ({
+              width: '100%',
+              textDecoration: 'none',
+              color: 'inherit',
+              backgroundColor: isActive ? 'rgba(27, 89, 248, 0.1)' : 'transparent',
+              borderRadius: '10px',
+            })}
           >
             <ListItemButton>COMPONENTS</ListItemButton>
           </NavLink>
@@ -29,7 +41,13 @@ const Sidebar = () => {
         <ListItem disablePadding>
           <NavLink
             to={PRIVATE_PAGES.SETTINGS}
-            style={{ width: '100%', textDecoration: 'none', color: 'inherit' }}
+            style={({ isActive }) => ({
+              width: '100%',
+              textDecoration: 'none',
+              color: 'inherit',
+              backgroundColor: isActive ? 'rgba(27, 89, 248, 0.1)' : 'transparent',
+              borderRadius: '10px',
+            })}
           >
             <ListItemButton>SETTINGS</ListItemButton>
           </NavLink>

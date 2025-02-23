@@ -49,7 +49,11 @@ const ComponentTable = () => {
             {componentsList.map((componentsItem: ComponentDTO) => {
               return (
                 <TableRow hover key={componentsItem.id}>
-                  <TableCell>{componentsItem.title}</TableCell>
+                  <TableCell>
+                    <NavLink to={componentsItem.id}>
+                      {componentsItem.title}
+                    </NavLink>
+                  </TableCell>
                   <TableCell>{componentsItem.description}</TableCell>
                   <TableCell>{componentsItem.price}</TableCell>
                   <TableCell>
@@ -64,7 +68,9 @@ const ComponentTable = () => {
                     </NavLink>
                   </TableCell>
                   <TableCell>{componentsItem.remainder}</TableCell>
-                  <TableCell>{EnumUnitMeasureTranslate[componentsItem.unit_measure]}</TableCell>
+                  <TableCell>
+                    {EnumUnitMeasureTranslate[componentsItem.unit_measure]}
+                  </TableCell>
                   <TableCell>{componentsItem.length}</TableCell>
                   <TableCell>{componentsItem.width}</TableCell>
                   <TableCell>{componentsItem.height}</TableCell>

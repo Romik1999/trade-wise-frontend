@@ -5,8 +5,11 @@ import {
   fetchComponents,
   patchComponent,
 } from '../api';
+import { useParams } from 'react-router-dom';
 
 export const useComponent = () => {
+  const { componentId } = useParams();
+
   const { data: componentsList, isPending: isComponentsListLoading } = useQuery(
     {
       queryKey: ['components-list'],
@@ -15,12 +18,13 @@ export const useComponent = () => {
     }
   );
 
-  const useGetComponent = (id: string) => {
-    return useQuery({
-      queryKey: ['todos', id],
-      queryFn: () => fetchComponentById(id),
+  const { data: componentDetail, isPending: isComponentDetailLoading } =
+    useQuery({
+      queryKey: ['todos', componentId],
+      queryFn: () => fetchComponentById(componentId ?? ''),
+      select: (data) => data.data,
+      enabled: !!componentId,
     });
-  };
 
   const patchComponentMutation = useMutation({
     mutationFn: ({ id, data }) => patchComponent(id, data),
@@ -53,7 +57,8 @@ export const useComponent = () => {
   return {
     componentsList,
     isComponentsListLoading,
-    useGetComponent,
+    componentDetail,
+    isComponentDetailLoading,
     onUpdateComponent,
     onDeleteComponent,
   };
