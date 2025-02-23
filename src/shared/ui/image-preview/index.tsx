@@ -48,8 +48,8 @@ const ImagePreview: FC<ImagePreviewProps> = ({ imageUrl, altText }) => {
     <div>
       <Box
         onClick={handleOpen}
-        width="100px"
-        height="100px"
+        width="50px"
+        height="50px"
         style={{ cursor: 'pointer' }}
       >
         <Image imageUrl={imageUrl} altText={altText} />

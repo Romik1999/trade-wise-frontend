@@ -5,15 +5,16 @@ import {
   fetchComponents,
   patchComponent,
 } from '../api';
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 
 export const useComponent = () => {
   const { componentId } = useParams();
+  const [searchParams] = useSearchParams();
 
   const { data: componentsList, isPending: isComponentsListLoading } = useQuery(
     {
-      queryKey: ['components-list'],
-      queryFn: fetchComponents,
+      queryKey: ['components-list', searchParams.toString()],
+      queryFn: () => fetchComponents(searchParams),
       select: (data) => data.data,
     }
   );

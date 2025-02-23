@@ -39,10 +39,7 @@ const ComponentTable = () => {
               <TableCell>Ссылка на продавца</TableCell>
               <TableCell>Остаток</TableCell>
               <TableCell>Ед. измерения</TableCell>
-              <TableCell>Длинна</TableCell>
-              <TableCell>Ширина</TableCell>
-              <TableCell>Высота</TableCell>
-              <TableCell>Диаметр</TableCell>
+              <TableCell></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -71,10 +68,11 @@ const ComponentTable = () => {
                   <TableCell>
                     {EnumUnitMeasureTranslate[componentsItem.unit_measure]}
                   </TableCell>
-                  <TableCell>{componentsItem.length}</TableCell>
-                  <TableCell>{componentsItem.width}</TableCell>
-                  <TableCell>{componentsItem.height}</TableCell>
-                  <TableCell>{componentsItem.diameter}</TableCell>
+                  <TableCell>
+                    Delete
+                    Patch
+                    Watch
+                  </TableCell>
                 </TableRow>
               );
             })}

@@ -21,3 +21,27 @@ export const EnumUnitMeasureTranslate = {
   GRAMS: 'Грамм',
   METERS: 'Метр',
 };
+
+export type SortDto = {
+  field: string;
+  order: 'asc' | 'desc';
+};
+
+export type PriceFilterDto = {
+  min?: number;
+  max?: number;
+};
+
+export type DateFilterDto = {
+  from?: Date;
+  to?: Date;
+};
+
+export type GetComponent = {
+  search?: string;
+  sort?: SortDto[];
+  price?: PriceFilterDto;
+  createdAt?: DateFilterDto;
+  page?: number;
+  pageSize?: number;
+};
