@@ -12,6 +12,9 @@
     "includedScripts": []
   },
   "dependencies": {
+    "@mui/x-date-pickers": "^7.27.0",
+    "@mui/x-date-pickers-pro": "^7.27.0",
+    "date-fns": "^4.1.0",
     "lodash": "^4.17.21",
     "react": "19.0.0",
     "react-dom": "19.0.0"
@@ -21,7 +24,7 @@
     "@emotion/styled": "^11.14.0",
     "@eslint/js": "^9.8.0",
     "@mui/icons-material": "^6.4.4",
-    "@mui/material": "^6.4.4",
+    "@mui/material": "^6.4.5",
     "@nx/eslint": "20.4.4",
     "@nx/eslint-plugin": "20.4.4",
     "@nx/js": "20.4.4",

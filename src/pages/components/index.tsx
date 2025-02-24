@@ -9,17 +9,17 @@ const filtersList = [
     filterKey: 'price',
     type: 'range',
     passedParams: {
-      min: 0,
-      max: 0,
+      min: null,
+      max: null,
     },
   },
   {
     title: 'CreatedAt',
     filterKey: 'createdAt',
-    type: 'range',
+    type: 'rangeCalendar',
     passedParams: {
-      from: "",
-      to: "",
+      from: null,
+      to: null,
     },
   },
 ];

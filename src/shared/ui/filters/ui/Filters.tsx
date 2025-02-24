@@ -6,9 +6,9 @@ import { useSearchParams } from 'react-router-dom';
 export type FilterItemProps = {
   title: string;
   filterKey: string;
-  type: 'range' | string;
+  type: 'range' | "rangeCalendar" | string;
   passedParams: {
-    [key: string]: number | string;
+    [key: string]: number | string | Date | null;
   };
   onChangeInput?: (key: string, fieldStart: string, fieldEnd: string) => void;
 };
@@ -50,7 +50,7 @@ const Filters: FC<FiltersProps> = ({ filtersList }) => {
 
     setSearchParams(queryParams);
   };
-
+  console.log({ filters });
   return (
     <Box>
       {filters.map((item) => (
