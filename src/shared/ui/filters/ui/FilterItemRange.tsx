@@ -19,6 +19,8 @@ const FilterItemRange: FC<FilterItemProps> = ({
               label={key}
               fullWidth={true}
               size="small"
+              value={value}
+              defaultValue={value}
               onChange={(e) =>
                 onChangeInput && onChangeInput(filterKey, key, e.target.value)
               }

@@ -19,7 +19,7 @@ export type FiltersProps = {
 
 const Filters: FC<FiltersProps> = ({ filtersList }) => {
   const {filters, onChangeInput, handleSubmit} = useFilters(filtersList)
-
+  console.log({ filters });
   return (
     <Box>
       {filters.map((item) => (
