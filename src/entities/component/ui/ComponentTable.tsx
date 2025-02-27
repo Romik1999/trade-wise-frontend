@@ -30,6 +30,7 @@ const ComponentTable = () => {
         title: 'Закупочная цена, р',
         key: 'price',
         getContent: (component: ComponentDTO) => <Box>{component.price}</Box>,
+        enabledMultiColumnSort: true,
       },
       {
         title: 'Изображение',
@@ -48,6 +49,15 @@ const ComponentTable = () => {
           <NavLink to={component.seller_link} target="_blank">
             Ссылка
           </NavLink>
+        ),
+      },
+      {
+        title: 'Дата создания',
+        key: 'createdAt',
+        getContent: (component: ComponentDTO) => (
+          <Box>s
+            {component.createdAt}
+          </Box>
         ),
       },
       {

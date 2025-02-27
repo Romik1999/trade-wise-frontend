@@ -6,6 +6,7 @@ export type ComponentDTO = {
   images: string[];
   seller_link: string;
   remainder: number;
+  createdAt: Date;
   unit_measure: EnumUnitMeasure;
   length: number;
   width: number;
