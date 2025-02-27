@@ -36,6 +36,22 @@ export const useFilters = (filtersList: FilterItemProps[]) => {
     setSearchParams(queryParams);
   };
 
+  const handleClearFilters = () => {
+    setSearchParams(new URLSearchParams());
+
+    setFilters((prevState) => {
+      return prevState.map((filter) => {
+        const newPassedParams = { ...filter.passedParams };
+        Object.keys(newPassedParams).forEach((key) => {
+          newPassedParams[key] = null;
+        });
+        return { ...filter, passedParams: newPassedParams };
+      });
+    });
+  };
+
+  console.log({ filters });
+
   useEffect(() => {
     const updatedFilters = filtersList.map((filter) => {
       const newPassedParams = { ...filter.passedParams };
@@ -53,5 +69,5 @@ export const useFilters = (filtersList: FilterItemProps[]) => {
     setFilters(updatedFilters);
   }, []);
 
-  return {filters, onChangeInput, handleSubmit};
+  return {filters, onChangeInput, handleSubmit, handleClearFilters};
 };

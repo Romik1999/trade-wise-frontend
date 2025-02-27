@@ -18,8 +18,8 @@ export type FiltersProps = {
 };
 
 const Filters: FC<FiltersProps> = ({ filtersList }) => {
-  const {filters, onChangeInput, handleSubmit} = useFilters(filtersList)
-  console.log({ filters });
+  const {filters, onChangeInput, handleSubmit, handleClearFilters} = useFilters(filtersList)
+
   return (
     <Box>
       {filters.map((item) => (
@@ -32,7 +32,7 @@ const Filters: FC<FiltersProps> = ({ filtersList }) => {
         />
       ))}
       <Button onClick={handleSubmit}>Ok</Button>
-      <Button>Cancel</Button>
+      <Button onClick={handleClearFilters}>Cancel</Button>
     </Box>
   );
 };
