@@ -20,7 +20,7 @@ const TableBodyCustom: FC<TableBodyCustomProps> = ({ tableConfig, items }) => {
           <TableRow hover key={item.id}>
             {tableConfig.cells.map((cell) => {
               return (
-                <TableCell key={cell.key}>
+                <TableCell key={cell.columnKey}>
                   <Box>{cell.getContent ? cell.getContent(item) : ""}</Box>
                 </TableCell>
               );

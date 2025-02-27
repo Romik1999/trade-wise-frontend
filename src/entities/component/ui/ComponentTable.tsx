@@ -1,4 +1,4 @@
-import { Box, CircularProgress } from '@mui/material';
+import { Box } from '@mui/material';
 import React from 'react';
 import { useComponent } from '../model';
 import { BACK_URL } from '../../../constants';
@@ -14,27 +14,26 @@ const ComponentTable = () => {
     cells: [
       {
         title: 'Название',
-        key: 'title',
+        columnKey: 'title',
         getContent: (component: ComponentDTO) => (
           <NavLink to={component.id}>{component.title}</NavLink>
         ),
       },
       {
         title: 'Описание',
-        key: 'description',
+        columnKey: 'description',
         getContent: (component: ComponentDTO) => (
           <Box>{component.description}</Box>
         ),
       },
       {
         title: 'Закупочная цена, р',
-        key: 'price',
+        columnKey: 'price',
         getContent: (component: ComponentDTO) => <Box>{component.price}</Box>,
-        enabledMultiColumnSort: true,
       },
       {
         title: 'Изображение',
-        key: 'images',
+        columnKey: 'images',
         getContent: (component: ComponentDTO) => (
           <ImagePreview
             imageUrl={`${BACK_URL}${component.images[0]}`}
@@ -44,7 +43,7 @@ const ComponentTable = () => {
       },
       {
         title: 'Ссылка на продавца',
-        key: 'images',
+        columnKey: 'images',
         getContent: (component: ComponentDTO) => (
           <NavLink to={component.seller_link} target="_blank">
             Ссылка
@@ -53,30 +52,26 @@ const ComponentTable = () => {
       },
       {
         title: 'Дата создания',
-        key: 'createdAt',
+        columnKey: 'createdAt',
         getContent: (component: ComponentDTO) => (
-          <Box>s
+          <Box>
             {component.createdAt}
           </Box>
         ),
       },
       {
         title: '',
-        key: 'actions',
+        columnKey: 'actions',
         getContent: (component: ComponentDTO) => <Box>Delete Patch Watch</Box>,
       },
     ],
   };
 
-  if (isComponentsListLoading) {
-    return <CircularProgress size="30px" />;
-  }
-
   if (!componentsList) {
     return 'Данных не найдено';
   }
 
-  return <TableCustom tableConfig={tableConfig} items={componentsList} />;
+  return <TableCustom tableConfig={tableConfig} items={componentsList} isItemsLoading={isComponentsListLoading} />;
 };
 
 export default ComponentTable;

@@ -50,8 +50,6 @@ export const useFilters = (filtersList: FilterItemProps[]) => {
     });
   };
 
-  console.log({ filters });
-
   useEffect(() => {
     const updatedFilters = filtersList.map((filter) => {
       const newPassedParams = { ...filter.passedParams };
