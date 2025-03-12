@@ -10,7 +10,7 @@ import { useParams, useSearchParams } from 'react-router-dom';
 export const useComponent = () => {
   const { componentId } = useParams();
   const [searchParams] = useSearchParams();
-
+  console.log("component:", searchParams);
   const { data: componentsList, isPending: isComponentsListLoading } = useQuery(
     {
       queryKey: ['components-list', searchParams.toString()],

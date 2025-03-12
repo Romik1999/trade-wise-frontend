@@ -1,4 +1,4 @@
-import React, { FC, memo, ReactNode } from 'react';
+import React, { FC, ReactNode } from 'react';
 import TableHeadCustom from './TableHead';
 import TableBodyCustom from './TableBody';
 import { Box, CircularProgress, Table, TableContainer } from '@mui/material';
@@ -7,6 +7,7 @@ export type CellsType = {
   title: string | FC | ReactNode;
   columnKey: string;
   enabledMultiColumnSort?: boolean;
+  enabledColumnSort?: boolean;
   getContent?: (data: any) => any;
   width?: string | number;
 };
@@ -21,7 +22,7 @@ export type TableCustomProps = {
   isItemsLoading?: boolean;
 };
 
-const TableCustom: FC<TableCustomProps> = memo(({
+const TableCustom: FC<TableCustomProps> = ({
   tableConfig,
   items,
   isItemsLoading = false,
@@ -40,6 +41,6 @@ const TableCustom: FC<TableCustomProps> = memo(({
       </TableContainer>
     </Box>
   );
-});
+};
 
 export default TableCustom;
