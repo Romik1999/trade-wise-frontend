@@ -6,7 +6,7 @@ import { Box, CircularProgress, Table, TableContainer } from '@mui/material';
 export type CellsType = {
   title: string | FC | ReactNode;
   columnKey: string;
-  enabledMultiColumnSort?: boolean;
+  enabledMultiSort?: boolean;
   enabledColumnSort?: boolean;
   getContent?: (data: any) => any;
   width?: string | number;
@@ -30,10 +30,23 @@ const TableCustom: FC<TableCustomProps> = ({
   return (
     <Box overflow="hidden">
       <TableContainer sx={{ maxHeight: '100%' }}>
-        <Table stickyHeader aria-label="sticky table">
+        <Table
+          stickyHeader
+          aria-label="sticky table"
+          style={{ minHeight: '300px', position: 'relative' }}
+        >
           <TableHeadCustom tableConfig={tableConfig} />
           {isItemsLoading ? (
-            <CircularProgress size="30px" />
+            <Box
+              width="100%"
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              minHeight="calc(100% - 100px)"
+              position="absolute"
+            >
+              <CircularProgress size="30px" />
+            </Box>
           ) : (
             <TableBodyCustom tableConfig={tableConfig} items={items} />
           )}
