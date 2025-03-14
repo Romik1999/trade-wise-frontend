@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
 import React from 'react';
-import { useComponent } from '../model';
+import { useComponentsList } from '../model';
 import { NavLink } from 'react-router-dom';
 import { ComponentDTO } from '../model/product.dto';
 import TableCustom from '../../../shared/ui/table/ui/Table';
@@ -53,13 +53,14 @@ const tableConfig = {
 };
 
 const ComponentTable = () => {
-  const { componentsList, isComponentsListLoading } = useComponent();
+  const { componentsList, isComponentsListLoading, componentsListTotal } = useComponentsList();
 
   return (
     <TableCustom
       tableConfig={tableConfig}
       items={componentsList}
       isItemsLoading={isComponentsListLoading}
+      itemsTotal={componentsListTotal}
     />
   );
 };

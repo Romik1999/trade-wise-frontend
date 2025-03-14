@@ -2,6 +2,7 @@ import React, { FC, ReactNode } from 'react';
 import TableHeadCustom from './TableHead';
 import TableBodyCustom from './TableBody';
 import { Box, CircularProgress, Table, TableContainer } from '@mui/material';
+import TablePagination from './TablePagination';
 
 export type CellsType = {
   title: string | FC | ReactNode;
@@ -20,12 +21,14 @@ export type TableCustomProps = {
   tableConfig: TableConfig;
   items?: any;
   isItemsLoading?: boolean;
+  itemsTotal?: number;
 };
 
 const TableCustom: FC<TableCustomProps> = ({
   tableConfig,
   items,
   isItemsLoading = false,
+  itemsTotal
 }) => {
   return (
     <Box overflow="hidden">
@@ -52,6 +55,7 @@ const TableCustom: FC<TableCustomProps> = ({
           )}
         </Table>
       </TableContainer>
+      <TablePagination itemsTotal={itemsTotal}/>
     </Box>
   );
 };

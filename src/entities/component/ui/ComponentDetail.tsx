@@ -1,9 +1,9 @@
 import React from 'react';
-import { useComponent } from '../model';
+import { useComponentsList } from '../model';
 import { CircularProgress } from '@mui/material';
 
 const ComponentDetail = () => {
-  const { componentDetail, isComponentDetailLoading } = useComponent();
+  const { componentDetail, isComponentDetailLoading } = useComponentsList();
   if (isComponentDetailLoading){
     return <CircularProgress size="30px" />;
   }
