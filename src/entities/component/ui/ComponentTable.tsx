@@ -13,7 +13,6 @@ const tableConfig = {
       getContent: (component: ComponentDTO) => (
         <NavLink to={component.id}>{component.title}</NavLink>
       ),
-      enabledMultiSort: true,
     },
     {
       title: 'Описание',

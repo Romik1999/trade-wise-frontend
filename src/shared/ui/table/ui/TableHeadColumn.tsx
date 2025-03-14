@@ -15,11 +15,6 @@ const TableHeadColumnCustom: FC<TableHeadColumnCustomProps> = memo(
     const [searchParams, setSearchParams] = useSearchParams();
     const [currentDirection, setCurrentDirection] = useState(null);
 
-    useEffect(() => {
-      const direction = searchParams.get(`sort[${cell.columnKey}]`);
-      setCurrentDirection(direction);
-    }, [searchParams, cell.columnKey]);
-
     const toggleSortParam = () => {
       let newDirection = null;
 
@@ -44,6 +39,13 @@ const TableHeadColumnCustom: FC<TableHeadColumnCustomProps> = memo(
       cursor: cell.enabledMultiSort && "pointer",
     }
 
+    const iconColor = currentDirection !== null ? "inherit" : "disabled"
+
+    useEffect(() => {
+      const direction = searchParams.get(`sort[${cell.columnKey}]`);
+      setCurrentDirection(direction);
+    }, [searchParams, cell.columnKey]);
+
 
     return (
       <TableCell>
@@ -57,11 +59,11 @@ const TableHeadColumnCustom: FC<TableHeadColumnCustomProps> = memo(
         >
           {cell.title}
           {cell.enabledMultiSort && cell.title !== '' && (
-            <Box>
+            <Box display="flex">
               {currentDirection === 'asc' ? (
-                <ArrowDownwardOutlinedIcon />
+                <ArrowDownwardOutlinedIcon color={iconColor} />
               ) : (
-                <ArrowUpwardOutlinedIcon />
+                <ArrowUpwardOutlinedIcon color={iconColor} />
               )}
             </Box>
           )}
