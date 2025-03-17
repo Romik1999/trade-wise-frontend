@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Button, Popover as MuiPopover } from '@mui/material';
+import { Box, Button, Popover as MuiPopover } from '@mui/material';
 import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
 import { usePopoverOptions } from '../model';
 
@@ -12,7 +12,7 @@ const PopoverOptions: FC<PopoverOptionsProps> = ({ children }) => {
 
   return (
     <div>
-      <Button aria-describedby={id} variant="contained" onClick={handleClick}>
+      <Button aria-describedby={id} variant="outlined" onClick={handleClick} style={{minWidth: "40px", height: "40px", padding: "5px"}}>
         <MoreHorizRoundedIcon />
       </Button>
       <MuiPopover
@@ -22,10 +22,16 @@ const PopoverOptions: FC<PopoverOptionsProps> = ({ children }) => {
         onClose={handleClose}
         anchorOrigin={{
           vertical: 'bottom',
-          horizontal: 'left',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
         }}
       >
-        {children}
+        <Box padding="10px" minWidth={"300px"}>
+          {children}
+        </Box>
       </MuiPopover>
     </div>
   );

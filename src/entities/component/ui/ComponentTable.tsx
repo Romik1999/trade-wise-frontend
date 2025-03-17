@@ -1,9 +1,10 @@
-import { Box } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import React from 'react';
 import { useComponentsList } from '../model';
 import { NavLink } from 'react-router-dom';
 import { ComponentDTO } from '../model/product.dto';
 import TableCustom from '../../../shared/ui/table/ui/Table';
+import PopoverOptions from '../../../shared/ui/popover-options/ui/PopoverOptions';
 
 const tableConfig = {
   cells: [
@@ -47,7 +48,7 @@ const tableConfig = {
     {
       title: '',
       columnKey: 'actions',
-      getContent: (component: ComponentDTO) => <Box>Delete Patch Watch</Box>,
+      getContent: (component: ComponentDTO) => <PopoverOptions><Typography onClick={()=>{}}>Удалить</Typography></PopoverOptions>,
     },
   ],
 };
