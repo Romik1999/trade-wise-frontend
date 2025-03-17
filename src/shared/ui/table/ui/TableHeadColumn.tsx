@@ -48,7 +48,7 @@ const TableHeadColumnCustom: FC<TableHeadColumnCustomProps> = memo(
 
 
     return (
-      <TableCell>
+      <TableCell style={{width: cell.width}}>
         <Box
           display="flex"
           columnGap="5px"

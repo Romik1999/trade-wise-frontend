@@ -1,38 +1,55 @@
 import React, { FC } from 'react';
-import { Box, Button, Popover as MuiPopover } from '@mui/material';
+import { IconButton, Menu, Stack } from '@mui/material';
 import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
 import { usePopoverOptions } from '../model';
 
 export type PopoverOptionsProps = {
   children: React.ReactNode;
+  maxHeight?: number;
 };
 
-const PopoverOptions: FC<PopoverOptionsProps> = ({ children }) => {
-  const { handleClick, handleClose, open, id, anchorEl } = usePopoverOptions();
+const ITEM_HEIGHT = 24;
+
+const PopoverOptions: FC<PopoverOptionsProps> = ({
+  children,
+  maxHeight = 15,
+}) => {
+  const { handleClick, handleClose, open, anchorEl } = usePopoverOptions();
 
   return (
     <div>
-      <Button aria-describedby={id} variant="outlined" onClick={handleClick} style={{minWidth: "40px", height: "40px", padding: "5px"}}>
+      <IconButton
+        aria-label="more"
+        id="long-button"
+        aria-controls={open ? 'long-menu' : undefined}
+        aria-expanded={open ? 'true' : undefined}
+        aria-haspopup="true"
+        onClick={handleClick}
+      >
         <MoreHorizRoundedIcon />
-      </Button>
-      <MuiPopover
-        id={id}
-        open={open}
-        anchorEl={anchorEl}
-        onClose={handleClose}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'right',
+      </IconButton>
+      <Menu
+        id="long-menu"
+        MenuListProps={{
+          'aria-labelledby': 'long-button',
         }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        slotProps={{
+          paper: {
+            style: {
+              maxHeight: ITEM_HEIGHT * maxHeight,
+              maxWidth: '280px',
+              width: '100%',
+            },
+          },
         }}
       >
-        <Box padding="10px" minWidth={"300px"}>
+        <Stack padding="10px" spacing={2}>
           {children}
-        </Box>
-      </MuiPopover>
+        </Stack>
+      </Menu>
     </div>
   );
 };

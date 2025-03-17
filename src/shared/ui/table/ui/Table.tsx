@@ -36,6 +36,7 @@ const TableCustom: FC<TableCustomProps> = ({
         <Table
           stickyHeader
           aria-label="sticky table"
+          size='small'
           style={{ minHeight: '300px', position: 'relative' }}
         >
           <TableHeadCustom tableConfig={tableConfig} />

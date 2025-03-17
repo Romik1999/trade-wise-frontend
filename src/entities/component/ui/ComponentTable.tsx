@@ -48,6 +48,7 @@ const tableConfig = {
     {
       title: '',
       columnKey: 'actions',
+      width: "50px",
       getContent: (component: ComponentDTO) => <PopoverOptions><Typography onClick={()=>{}}>Удалить</Typography></PopoverOptions>,
     },
   ],
