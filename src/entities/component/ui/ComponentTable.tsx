@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { ComponentDTO } from '../model/product.dto';
 import TableCustom from '../../../shared/ui/table/ui/Table';
 import PopoverOptions from '../../../shared/ui/popover-options/ui/PopoverOptions';
+import ComponentPopover from './ComponentPopover';
 
 const tableConfig = {
   cells: [
@@ -40,22 +41,23 @@ const tableConfig = {
     {
       title: 'Дата создания',
       columnKey: 'createdAt',
-      getContent: (component: ComponentDTO) => (
-        <Box>{component.createdAt}</Box>
-      ),
+      getContent: (component: ComponentDTO) => <Box>{component.createdAt}</Box>,
       enabledMultiSort: true,
     },
     {
       title: '',
       columnKey: 'actions',
-      width: "50px",
-      getContent: (component: ComponentDTO) => <PopoverOptions><Typography onClick={()=>{}}>Удалить</Typography></PopoverOptions>,
+      width: '50px',
+      getContent: (component: ComponentDTO) => (
+        <ComponentPopover component={component} />
+      ),
     },
   ],
 };
 
 const ComponentTable = () => {
-  const { componentsList, isComponentsListLoading, componentsListTotal } = useComponentsList();
+  const { componentsList, isComponentsListLoading, componentsListTotal } =
+    useComponentsList();
 
   return (
     <TableCustom
