@@ -44,11 +44,20 @@ const PopoverOptions: FC<PopoverOptionsProps> = ({
               width: '100%',
               padding: '0',
               borderRadius: 4,
+              fontSize: '14px',
             },
           },
         }}
+        sx={{
+          ".MuiMenu-list": {
+            padding: '0',
+          },
+          ".MuiMenuItem-root":{
+            fontSize: '14px',
+          }
+        }}
       >
-        <Stack padding="0 10px" spacing={2}>
+        <Stack padding="5px" spacing={2}>
           {children}
         </Stack>
       </Menu>
