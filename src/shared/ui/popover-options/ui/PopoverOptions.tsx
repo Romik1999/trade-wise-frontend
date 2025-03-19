@@ -42,11 +42,13 @@ const PopoverOptions: FC<PopoverOptionsProps> = ({
               maxHeight: ITEM_HEIGHT * maxHeight,
               maxWidth: '280px',
               width: '100%',
+              padding: '0',
+              borderRadius: 4,
             },
           },
         }}
       >
-        <Stack padding="10px" spacing={2}>
+        <Stack padding="0 10px" spacing={2}>
           {children}
         </Stack>
       </Menu>
