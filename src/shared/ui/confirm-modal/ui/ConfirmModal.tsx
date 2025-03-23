@@ -38,7 +38,6 @@ export type ConfirmModalProps = {
   title?: string;
   description?: string;
   onCancel?: () => void;
-  onConfirm?: () => void;
   confirmButtonText?: string;
   request?: any;
   onSuccess?: () => void;
@@ -50,7 +49,6 @@ const ConfirmModal: FC<ConfirmModalProps> = ({
   description = 'Open modal',
   confirmButtonText = 'Confirm',
   onCancel,
-  onConfirm,
   request,
   onSuccess,
 }) => {
@@ -68,7 +66,6 @@ const ConfirmModal: FC<ConfirmModalProps> = ({
 
     try {
       const { data } = await request();
-      console.log({ data });
       if (data.statusCode === 200) {
         onSuccess?.();
         setOpen(false);

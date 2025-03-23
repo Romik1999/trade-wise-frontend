@@ -5,7 +5,7 @@ import { useSearchParams } from 'react-router-dom';
 export const useComponentsList = () => {
   const [searchParams] = useSearchParams();
 
-  const { data: componentsList, isPending: isComponentsListLoading } = useQuery(
+  const { data: componentsList, refetch: componentsListRefetch, isPending: isComponentsListLoading } = useQuery(
     {
       queryKey: ['components-list', searchParams.toString()],
       queryFn: () => fetchComponents(searchParams),
@@ -16,6 +16,7 @@ export const useComponentsList = () => {
   return {
     componentsList: componentsList?.items,
     componentsListTotal: componentsList?.total,
-    isComponentsListLoading
+    isComponentsListLoading,
+    componentsListRefetch
   };
 };

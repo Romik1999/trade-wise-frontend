@@ -4,12 +4,15 @@ import PopoverOptions from '../../../shared/ui/popover-options/ui/PopoverOptions
 import { ComponentDTO } from '../model/product.dto';
 import ConfirmModal from '../../../shared/ui/confirm-modal/ui/ConfirmModal';
 import { deleteComponent } from '../api';
+import { useComponentsList } from '../model';
 
 export type ComponentPopoverProps = {
   component: ComponentDTO;
 };
 
 const ComponentPopover:FC<ComponentPopoverProps> = ({ component }) => {
+  const {componentsListRefetch} = useComponentsList()
+
   return (
     <PopoverOptions>
       <ConfirmModal
@@ -18,7 +21,7 @@ const ComponentPopover:FC<ComponentPopoverProps> = ({ component }) => {
         customTrigger={<MenuItem>Удалить</MenuItem>}
         confirmButtonText={'Удалить'}
         onSuccess={() => {
-          console.log('Success');
+          componentsListRefetch()
         }}
         request={()=>deleteComponent(component.id)}
       />
