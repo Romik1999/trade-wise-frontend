@@ -9,7 +9,7 @@ export const useComponentDetail = () => {
     useQuery({
       queryKey: ['todos', componentId],
       queryFn: () => fetchComponentById(componentId ?? ''),
-      select: (data) => data.data,
+      select: (data) => data.data.data,
       enabled: !!componentId,
     });
 

@@ -10,6 +10,7 @@ import {
 } from '@mui/material';
 import React, { FC, useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
+import { useNotification } from '../../../providers/notification';
 
 const style = {
   position: 'absolute',
@@ -41,6 +42,7 @@ export type ConfirmModalProps = {
   confirmButtonText?: string;
   request?: any;
   onSuccess?: () => void;
+  successText?: string;
 };
 
 const ConfirmModal: FC<ConfirmModalProps> = ({
@@ -51,9 +53,11 @@ const ConfirmModal: FC<ConfirmModalProps> = ({
   onCancel,
   request,
   onSuccess,
+  successText = 'Success',
 }) => {
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const { showNotification } = useNotification();
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
@@ -67,8 +71,9 @@ const ConfirmModal: FC<ConfirmModalProps> = ({
     try {
       const { data } = await request();
       if (data.statusCode === 200) {
-        onSuccess?.();
         setOpen(false);
+        showNotification(successText);
+        onSuccess?.();
       }
     } catch (err) {
       console.log({ err });

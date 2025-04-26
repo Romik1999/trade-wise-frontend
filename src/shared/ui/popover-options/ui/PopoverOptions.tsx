@@ -4,7 +4,7 @@ import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
 import { usePopoverOptions } from '../model';
 
 export type PopoverOptionsProps = {
-  children: React.ReactNode;
+  children: any;
   maxHeight?: number;
 };
 
@@ -58,7 +58,7 @@ const PopoverOptions: FC<PopoverOptionsProps> = ({
         }}
       >
         <Stack padding="5px" spacing={2}>
-          {children}
+          {typeof children === 'function' ? children(handleClose) : children}
         </Stack>
       </Menu>
     </div>
