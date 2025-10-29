@@ -1,13 +1,13 @@
 import { Navigate, Outlet } from 'react-router-dom'
-import { PUBLIC_PAGES } from './index'
 import Layout from '../../shared/ui/layout/ui/Layout'
 import { getAccessToken } from '../../shared/api/axios'
+import { FULL_ROUTES } from '../../shared/constants/routes.ts'
 
 export const ProtectedRoutes = () => {
   const accessToken = getAccessToken()
 
   if (!accessToken) {
-    return <Navigate to={PUBLIC_PAGES.LOGIN} replace />
+    return <Navigate to={FULL_ROUTES.PUBLIC.LOGIN} replace />
   }
 
   return (

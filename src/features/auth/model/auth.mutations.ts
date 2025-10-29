@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { useMutation } from '@tanstack/react-query'
 import { AuthApi } from '../api/auth.api.ts'
 import { saveTokenStorage } from '../../../shared/api/axios.ts'
-import { PRIVATE_PAGES } from '../../../app/routes'
+import { FULL_ROUTES } from '../../../shared/constants/routes.ts'
 
 export const useLoginMutation = () => {
   const navigate = useNavigate()
@@ -11,11 +11,10 @@ export const useLoginMutation = () => {
     mutationKey: ['auth user'],
     mutationFn: AuthApi.login,
     onSuccess: ({ data }) => {
-      console.log({ data })
       if (data?.data?.token) {
         saveTokenStorage(data?.data?.token)
       }
-      navigate(PRIVATE_PAGES.HOME)
+      navigate(FULL_ROUTES.PRIVATE.HOME)
     },
     onError: (error) => {
       console.log('error: ', error)

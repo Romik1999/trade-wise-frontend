@@ -1,8 +1,8 @@
 import type { CreateAxiosDefaults } from 'axios'
 import axios from 'axios'
 import Cookies from 'js-cookie'
-import { EnumTokens } from '../../features/auth/model/useAuth'
 import { API_URL } from '../constants/constants.ts'
+import { EnumTokens } from '../constants/Enums.ts'
 
 export const getContentType = () => ({
   'Content-Type': 'application/json'
