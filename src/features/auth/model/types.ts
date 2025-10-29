@@ -1,10 +1,4 @@
-export interface IUser {
-    id: number;
-    name?: string;
-    email: string;
-    avatarPath?: string;
-    verificationToken?: string;
-}
+import type { IUserDTO } from '../../../entities/user/model/type.ts'
 
 export interface IAuthRequest {
     email: string;
@@ -12,6 +6,8 @@ export interface IAuthRequest {
 }
 
 export interface IAuthResponse {
-    accessToken: string;
-    user: IUser;
+    data: {
+        user: IUserDTO
+        token: string
+    }
 }

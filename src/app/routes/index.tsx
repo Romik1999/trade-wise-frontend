@@ -4,30 +4,18 @@ import Login from '../../pages/login'
 import { ProtectedRoutes } from './ProtectedRoutes'
 import { RedirectIfAuth } from './RedirectIfAuth'
 import Register from '../../pages/register'
-
-export const PUBLIC_PAGES = {
-  LOGIN: '/login',
-  REGISTER: '/register'
-}
-
-export const PRIVATE_PAGES = {
-  HOME: '/',
-  PROFILE: '/profile',
-  PRODUCTS: '/products',
-  COMPONENTS: '/components',
-  SETTINGS: '/settings'
-}
+import { FULL_ROUTES } from '../../shared/constants/routes.ts'
 
 const Router = createBrowserRouter([
   {
     element: <RedirectIfAuth />,
     children: [
       {
-        path: PUBLIC_PAGES.LOGIN,
+        path: FULL_ROUTES.PUBLIC.LOGIN,
         element: <Login />
       },
       {
-        path: PUBLIC_PAGES.REGISTER,
+        path: FULL_ROUTES.PUBLIC.REGISTER,
         element: <Register />
       }
     ]
@@ -36,7 +24,7 @@ const Router = createBrowserRouter([
     element: <ProtectedRoutes />,
     children: [
       {
-        path: PRIVATE_PAGES.HOME,
+        path: FULL_ROUTES.PRIVATE.HOME,
         element: <Home />
       }
     ]

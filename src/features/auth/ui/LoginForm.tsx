@@ -1,11 +1,9 @@
-import { Button, Stack } from '@mui/material'
+import { Button, Stack, TextField } from '@mui/material'
 import { useAuth } from '../model/useAuth'
-import { Form } from '../../../shared/ui/forms/form.tsx'
-import LabelledField from '../../../shared/ui/forms/LabelField.tsx'
-import FormField from '../../../shared/ui/forms/FormField.tsx'
+import { Form, LabelledField } from '../../../shared/ui/form'
 
 const LoginForm = () => {
-  const { form, loginFormSubmitFunction, onSubmit } = useAuth()
+  const { form, onSubmit } = useAuth()
 
   return (
     <Form form={form} onSubmit={onSubmit}>
@@ -14,7 +12,7 @@ const LoginForm = () => {
           label="Почта"
           connector={form.connect('email')}
           render={(field) => (
-            <FormField {...field} />
+            <TextField {...field} />
           )}
         />
 
@@ -22,7 +20,7 @@ const LoginForm = () => {
           label="Пароль"
           connector={form.connect('password')}
           render={(field) => (
-            <FormField fieldName={field?.name} type="password" {...field}/>
+            <TextField type="password" {...field}/>
           )}
         />
 

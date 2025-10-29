@@ -1,16 +1,17 @@
-import { type FC, type ReactNode, useLayoutEffect, useRef } from 'react'
-import { FormProvider, type UseFormReturn, useFormState } from 'react-hook-form'
-import { noop } from '../../utils/common.ts'
+import { type PropsWithChildren, useLayoutEffect, useRef } from 'react'
+import { type FieldValues, FormProvider, useFormState } from 'react-hook-form'
 import { Stack } from '@mui/material'
+import { noop } from '../../utils/common.ts'
+import type { UseFormResult } from '../../utils/form'
 
-interface IFormProps {
-    onSubmit: ()=>void
-    children: ReactNode
-    form: UseFormReturn
+export interface IFormProps<T extends FieldValues> {
+  onSubmit?: () => void
+  maxWidth?: (number | string)[]
+  form: UseFormResult<T>
 }
 
-export const Form: FC<IFormProps> = ({ onSubmit, children, form }) => {
-  const ref = useRef<HTMLFormElement | null>(null)
+export const Form = ({ onSubmit, children, form }: PropsWithChildren<IFormProps<T>>) => {
+  const ref = useRef(null)
 
   const state = useFormState({
     control: form.control
@@ -24,8 +25,6 @@ export const Form: FC<IFormProps> = ({ onSubmit, children, form }) => {
       label?.scrollIntoView({
         block: 'nearest'
       })
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-expect-error
       input?.focus()
     }
   }, [state.errors])
@@ -33,7 +32,7 @@ export const Form: FC<IFormProps> = ({ onSubmit, children, form }) => {
   return (
     <FormProvider {...form}>
       <form ref={ref} onSubmit={form.handleSubmit(onSubmit ?? noop)}>
-        <Stack spacing={'24px'}>
+        <Stack spacing="16px">
           {children}
         </Stack>
       </form>

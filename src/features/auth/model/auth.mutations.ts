@@ -10,9 +10,10 @@ export const useLoginMutation = () => {
   return useMutation({
     mutationKey: ['auth user'],
     mutationFn: AuthApi.login,
-    onSuccess: (response) => {
-      if (response.data.accessToken) {
-        saveTokenStorage(response.data.accessToken)
+    onSuccess: ({ data }) => {
+      console.log({ data })
+      if (data?.data?.token) {
+        saveTokenStorage(data?.data?.token)
       }
       navigate(PRIVATE_PAGES.HOME)
     },
