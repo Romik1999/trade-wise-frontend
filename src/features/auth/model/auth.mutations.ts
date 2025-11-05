@@ -13,8 +13,12 @@ export const useLoginMutation = () => {
     onSuccess: ({ data }) => {
       if (data?.data?.token) {
         saveTokenStorage(data?.data?.token)
+        navigate(FULL_ROUTES.PRIVATE.HOME, { replace: true })
       }
-      navigate(FULL_ROUTES.PRIVATE.HOME)
+      // Проверьте актуальное значение
+      console.log('FULL_ROUTES:', FULL_ROUTES)
+      console.log('FULL_ROUTES.PRIVATE:', FULL_ROUTES.PRIVATE)
+      console.log('FULL_ROUTES.PRIVATE.HOME:', FULL_ROUTES.PRIVATE.HOME)
     },
     onError: (error) => {
       console.log('error: ', error)
