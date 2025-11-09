@@ -1,25 +1,17 @@
-import { darken, lighten } from '@mui/material'
-
 const palette = {
   primary: {
-    main: '#5A2C87',
-    dark: darken('#5A2C87', 0.5),
-    light: lighten('#5A2C87', 0.5)
+    main: '#696cff',
+    light: 'rgba(105, 108, 255, 0.16)'
   },
   secondary: {
     main: '#00B0E6'
   },
-
   success: {
     main: '#28B181'
   },
-  background: {
-    default: '#FFFFFF',
-    sidebar: '#1D204A'
-  },
   text: {
-    primary: '#272B62',
-    secondary: '#FFFFFF'
+    primary: '#697a8d',
+    secondary: '#000000'
   },
   white: {
     main: '#FFFFFF'

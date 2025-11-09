@@ -15,10 +15,6 @@ export const useLoginMutation = () => {
         saveTokenStorage(data?.data?.token)
         navigate(FULL_ROUTES.PRIVATE.HOME, { replace: true })
       }
-      // Проверьте актуальное значение
-      console.log('FULL_ROUTES:', FULL_ROUTES)
-      console.log('FULL_ROUTES.PRIVATE:', FULL_ROUTES.PRIVATE)
-      console.log('FULL_ROUTES.PRIVATE.HOME:', FULL_ROUTES.PRIVATE.HOME)
     },
     onError: (error) => {
       console.log('error: ', error)

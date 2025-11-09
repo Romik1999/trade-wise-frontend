@@ -1,23 +1,20 @@
-import React, { FC, ReactNode } from 'react';
-import { BreadcrumbProps, Breadcrumbs } from '../../breadcrumbs';
-import { Stack, Typography } from '@mui/material';
+import type { FC, ReactNode } from 'react'
+import { Stack, Typography } from '@mui/material'
 
-export type PageProps = {
+export interface IPageProps {
   title: string;
   children: ReactNode;
   pageActions?: ReactNode;
-  breadcrumbs?: BreadcrumbProps[];
-};
+}
 
-export const Page: FC<PageProps> = ({
+export const Page: FC<IPageProps> = ({
   title,
-  breadcrumbs,
   pageActions,
-  children,
+  children
 }) => {
   return (
     <Stack spacing={2}>
-      <Breadcrumbs breadcrumbsList={breadcrumbs} />
+
       <Stack
         spacing={2}
         direction="row"
@@ -27,7 +24,8 @@ export const Page: FC<PageProps> = ({
         <Typography variant="h1">{title}</Typography>
         {!!pageActions && pageActions}
       </Stack>
+
       {children}
     </Stack>
-  );
-};
+  )
+}

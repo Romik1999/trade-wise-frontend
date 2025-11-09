@@ -1,29 +1,34 @@
+import palette from './palette.ts'
+
 export const typography = {
   fontFamily: ['Montserrat', 'sans-serif'].join(','),
+  allVariants: {
+    color: palette.text.primary
+  },
 
   h1: {
     fontWeight: 700,
-    fontSize: '2.5rem',
+    fontSize: '2.5rem'
   },
   h2: {
     fontWeight: 700,
-    fontSize: '2rem',
+    fontSize: '2rem'
   },
   h3: {
     fontWeight: 500,
-    fontSize: '1.75rem',
+    fontSize: '1.75rem'
   },
   h4: {
     fontWeight: 500,
-    fontSize: '1.5rem',
+    fontSize: '1.5rem'
   },
   body1: {
-    fontSize: '1rem',
+    fontSize: '1rem'
   },
   body2: {
-    fontSize: '0.875rem',
+    fontSize: '0.875rem'
   },
   button: {
-    fontWeight: 700,
-  },
-};
+    fontWeight: 700
+  }
+}
