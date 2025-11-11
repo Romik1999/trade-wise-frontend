@@ -5,6 +5,9 @@ import { ProtectedRoutes } from './ProtectedRoutes'
 import { RedirectIfAuth } from './RedirectIfAuth'
 import Register from '../../pages/register'
 import { FULL_ROUTES } from '../../shared/constants/routes.ts'
+import { Profile } from '../../pages/profile'
+import { Settings } from '../../pages/settings'
+import { Notifications } from '../../pages/notifications'
 
 const Router = createBrowserRouter([
   {
@@ -26,6 +29,18 @@ const Router = createBrowserRouter([
       {
         path: FULL_ROUTES.PRIVATE.HOME,
         element: <Home />
+      },
+      {
+        path: FULL_ROUTES.PRIVATE.PROFILE,
+        element: <Profile />
+      },
+      {
+        path: FULL_ROUTES.PRIVATE.SETTINGS,
+        element: <Settings />
+      },
+      {
+        path: FULL_ROUTES.PRIVATE.NOTIFICATIONS,
+        element: <Notifications />
       }
     ]
   },

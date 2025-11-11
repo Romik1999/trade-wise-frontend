@@ -1,5 +1,5 @@
 import type { FC, ReactNode } from 'react'
-import { Box, Stack } from '@mui/material'
+import { Stack } from '@mui/material'
 import { Sidebar } from '../../sidebar'
 import { Header } from '../../../../widgets/header/ui'
 
@@ -17,11 +17,12 @@ const Layout: FC<ILayoutProps> = ({ children }) => {
     >
       <Sidebar/>
 
-      <Box width="calc(100% - 300px)" padding="16px" overflow="auto">
+      <Stack spacing="16px" width="calc(100% - 300px)" padding="16px"
+        overflow="auto"
+      >
         <Header/>
         {children}
-
-      </Box>
+      </Stack>
     </Stack>
   )
 }

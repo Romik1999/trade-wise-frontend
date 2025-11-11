@@ -5,7 +5,8 @@ export const ROUTES = {
   PROFILE: 'profile',
   PRODUCTS: 'products',
   COMPONENTS: 'components',
-  SETTINGS: 'settings'
+  SETTINGS: 'settings',
+  NOTIFICATIONS: 'notifications'
 }
 
 export const FULL_ROUTES = {
@@ -14,7 +15,8 @@ export const FULL_ROUTES = {
     PROFILE: `${ROUTES.HOME}/${ROUTES.PROFILE}`,
     PRODUCTS: `${ROUTES.HOME}/${ROUTES.PRODUCTS}`,
     COMPONENTS: `${ROUTES.HOME}/${ROUTES.COMPONENTS}`,
-    SETTINGS: `${ROUTES.HOME}/${ROUTES.SETTINGS}`
+    SETTINGS: `${ROUTES.HOME}/${ROUTES.SETTINGS}`,
+    NOTIFICATIONS: `${ROUTES.HOME}/${ROUTES.NOTIFICATIONS}`
   },
   PUBLIC: {
     LOGIN: `${ROUTES.HOME}/${ROUTES.LOGIN}`,

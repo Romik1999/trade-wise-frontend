@@ -8,5 +8,6 @@ export const API_IRL = `${API_CONFIG.BASE_URL}/${API_CONFIG.PREFIX}/${API_CONFIG
 
 export const API_ROUTES = {
   base: API_IRL,
-  login: `${API_IRL}/login`
+  login: `${API_IRL}/login`,
+  currentUser: `${API_IRL}/me`
 }

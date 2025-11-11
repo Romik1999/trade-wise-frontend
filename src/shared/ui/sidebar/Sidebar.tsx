@@ -31,7 +31,7 @@ export const Sidebar:FC<ISidebarProps> = ({ children }) => {
         aria-labelledby="nested-list-subheader"
       >
         {sidebarLinks?.map((sidebarLink, index) => (
-          <ListItemButton key={`list-item-${index}`}>
+          <ListItemButton key={`list-item-${index}`} component="a" href={sidebarLink.linkTo}>
             <ListItemIcon>
               {sidebarLink.icon ? (
                 <sidebarLink.icon />
