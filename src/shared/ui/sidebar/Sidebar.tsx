@@ -1,8 +1,8 @@
 import { type FC, type ReactNode } from 'react'
-import { List, ListItemButton, ListItemIcon, ListItemText, Stack, useTheme } from '@mui/material'
-import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded'
+import { List, Stack, useTheme } from '@mui/material'
 import { Logo } from '../logo'
 import { sidebarLinks } from './sidebarLinks.ts'
+import { NavigationMenuLink } from '../navigationMenuLink/ui/NavigationMenuLink.tsx'
 
 export interface ISidebarProps {
     children?: ReactNode
@@ -31,17 +31,12 @@ export const Sidebar:FC<ISidebarProps> = ({ children }) => {
         aria-labelledby="nested-list-subheader"
       >
         {sidebarLinks?.map((sidebarLink, index) => (
-          <ListItemButton key={`list-item-${index}`} component="a" href={sidebarLink.linkTo}>
-            <ListItemIcon>
-              {sidebarLink.icon ? (
-                <sidebarLink.icon />
-              ) : (
-                <ChevronRightRoundedIcon />
-              )}
-            </ListItemIcon>
-
-            <ListItemText primary={sidebarLink?.title} />
-          </ListItemButton>
+          <NavigationMenuLink
+            key={`list-item-${index}`}
+            to={sidebarLink.linkTo}
+            linkText={sidebarLink.title}
+            IconComponent={sidebarLink?.icon}
+          />
         ))}
       </List>
 

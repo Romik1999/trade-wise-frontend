@@ -8,6 +8,8 @@ import { FULL_ROUTES } from '../../shared/constants/routes.ts'
 import { Profile } from '../../pages/profile'
 import { Settings } from '../../pages/settings'
 import { Notifications } from '../../pages/notifications'
+import { Components } from '../../pages/components'
+import { Products } from '../../pages/products'
 
 const Router = createBrowserRouter([
   {
@@ -41,6 +43,14 @@ const Router = createBrowserRouter([
       {
         path: FULL_ROUTES.PRIVATE.NOTIFICATIONS,
         element: <Notifications />
+      },
+      {
+        path: FULL_ROUTES.PRIVATE.COMPONENTS,
+        element: <Components />
+      },
+      {
+        path: FULL_ROUTES.PRIVATE.PRODUCTS,
+        element: <Products />
       }
     ]
   },
