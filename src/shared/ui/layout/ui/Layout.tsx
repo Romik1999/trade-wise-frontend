@@ -1,13 +1,16 @@
 import type { FC, ReactNode } from 'react'
 import { Stack } from '@mui/material'
-import { Sidebar } from '../../sidebar'
 import { Header } from '../../../../widgets/header/ui'
+import { Sidebar } from '../../../../widgets/sidebar'
+import { useSidebar } from '../../../../widgets/sidebar/model/useSidebar.ts'
 
 interface ILayoutProps {
   children: ReactNode;
 }
 
 const Layout: FC<ILayoutProps> = ({ children }) => {
+  const { isTabletView, isOpenSidebar, onToggleSidebar, contentWrapperStyles } = useSidebar()
+
   return (
     <Stack
       spacing="0"
@@ -15,12 +18,12 @@ const Layout: FC<ILayoutProps> = ({ children }) => {
       direction="row"
       sx={{ backgroundColor: '#f5f5f9', overflow: 'hidden' }}
     >
-      <Sidebar/>
+      <Sidebar isOpenSidebar={isOpenSidebar} onToggleSidebar={onToggleSidebar} isTabletView={isTabletView}/>
 
-      <Stack spacing="16px" width="calc(100% - 300px)" padding="16px"
+      <Stack spacing="16px" padding="16px" sx={{ ...contentWrapperStyles }}
         overflow="auto"
       >
-        <Header/>
+        <Header isOpenSidebar={isOpenSidebar} onToggleSidebar={onToggleSidebar} isTabletView={isTabletView}/>
         {children}
       </Stack>
     </Stack>

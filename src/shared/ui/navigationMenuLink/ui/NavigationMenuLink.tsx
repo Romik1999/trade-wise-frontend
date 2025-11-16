@@ -7,9 +7,10 @@ export interface INavigationMenuLinkProps {
     to: string
     linkText: string
     IconComponent?: OverridableComponent<SvgIconTypeMap>
+    onClick?: () => void
 }
 
-export const NavigationMenuLink: FC<INavigationMenuLinkProps> = ({ to, linkText, IconComponent }) => {
+export const NavigationMenuLink: FC<INavigationMenuLinkProps> = ({ to, linkText, IconComponent, onClick }) => {
   const theme = useTheme()
   const location = useLocation()
   const isActive = location.pathname === to
@@ -18,6 +19,7 @@ export const NavigationMenuLink: FC<INavigationMenuLinkProps> = ({ to, linkText,
     <ListItemButton
       to={to}
       component={Link}
+      onClick={onClick}
       sx={{
         backgroundColor: isActive ? 'rgba(105, 108, 255, 0.16)' : 'inherit',
         color: isActive ? theme.palette.primary.main : 'inherit',

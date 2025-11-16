@@ -1,7 +1,15 @@
 import { AppBar, Box, Toolbar } from '@mui/material'
 import { UserPopover } from '../../user-popover'
+import { SidebarToggle } from '../../sidebar'
+import type { FC } from 'react'
 
-export const Header = () => {
+export interface IHeaderProps {
+    isOpenSidebar: boolean
+    onToggleSidebar: () => void
+    isTabletView: boolean
+}
+
+export const Header:FC<IHeaderProps> = ({ onToggleSidebar, isTabletView }) => {
   return (
     <AppBar
       position="static"
@@ -12,11 +20,9 @@ export const Header = () => {
       }}
     >
       <Toolbar>
+        <SidebarToggle onToggleSidebar={onToggleSidebar} isTabletView={isTabletView} />
         <Box sx={{ flexGrow: 1 }} />
-
-        <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-          <UserPopover />
-        </Box>
+        <UserPopover />
       </Toolbar>
     </AppBar>
   )
