@@ -4,12 +4,10 @@ import { Stack, Typography } from '@mui/material'
 export interface IPageProps {
   title: string;
   children: ReactNode;
-  pageActions?: ReactNode;
 }
 
 export const Page: FC<IPageProps> = ({
   title,
-  pageActions,
   children
 }) => {
   return (
@@ -22,7 +20,6 @@ export const Page: FC<IPageProps> = ({
         justifyContent="space-between"
       >
         <Typography variant="h1">{title}</Typography>
-        {!!pageActions && pageActions}
       </Stack>
 
       {children}

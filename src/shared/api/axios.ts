@@ -1,4 +1,4 @@
-import type { CreateAxiosDefaults } from 'axios'
+import type { AxiosError, AxiosInstance, AxiosResponse, CreateAxiosDefaults, InternalAxiosRequestConfig } from 'axios'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 import { API_URL } from '../constants/constants.ts'
@@ -30,14 +30,28 @@ const axiosOptions: CreateAxiosDefaults = {
   headers: getContentType()
 }
 
-export const axiosClassic = axios.create(axiosOptions)
+export const axiosClassic: AxiosInstance = axios.create(axiosOptions)
 
-axiosClassic.interceptors.request.use((config) => {
-  const accessToken = getAccessToken()
+axiosClassic.interceptors.request.use(
+  (config: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
+    const accessToken = getAccessToken()
 
-  if (config?.headers && accessToken) {
-    config.headers.Authorization = `Bearer ${accessToken}`
+    if (accessToken && config.headers) {
+      config.headers.Authorization = `Bearer ${accessToken}`
+    }
+
+    return config
+  },
+  (error: AxiosError): Promise<never> => {
+    return Promise.reject(error)
   }
+)
 
-  return config
-})
+axiosClassic.interceptors.response.use(
+  (response: AxiosResponse): AxiosResponse => {
+    return response
+  },
+  (error: AxiosError): Promise<never> => {
+    return Promise.reject(error)
+  }
+)

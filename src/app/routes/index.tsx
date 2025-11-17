@@ -8,7 +8,7 @@ import { FULL_ROUTES } from '../../shared/constants/routes.ts'
 import { Profile } from '../../pages/profile'
 import { Settings } from '../../pages/settings'
 import { Notifications } from '../../pages/notifications'
-import { Components } from '../../pages/components'
+import { Ingredients } from '../../pages/ingredients'
 import { Products } from '../../pages/products'
 
 const Router = createBrowserRouter([
@@ -46,7 +46,7 @@ const Router = createBrowserRouter([
       },
       {
         path: FULL_ROUTES.PRIVATE.COMPONENTS,
-        element: <Components />
+        element: <Ingredients />
       },
       {
         path: FULL_ROUTES.PRIVATE.PRODUCTS,
