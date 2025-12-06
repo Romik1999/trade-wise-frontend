@@ -1,40 +1,40 @@
-import { Box, CircularProgress, Pagination, Paper, Stack, Table as MUITable, TableContainer } from '@mui/material'
+import { Box, CircularProgress, Stack, Table as MUITable, TableContainer } from '@mui/material'
 import { TableHeader } from './TableHeader.tsx'
 import { TableBody } from './TableBody.tsx'
 import type { ITableProps } from '../model/types.ts'
+import { Pagination } from './Pagination.tsx'
 
 export const Table = <T, >({
   tableConfig,
   items,
   isItemsLoading = false,
-  itemsTotal
+  itemsTotal,
+  maxHeight
 }: ITableProps<T>) => {
   return (
     <Stack spacing={2}>
-      <Paper sx={{ width: '100%', overflow: 'hidden', boxShadow: '0 2px 6px 0 rgba(67, 89, 113, 0.12)', borderRadius: '0.5rem' }}>
-        <TableContainer sx={{ maxHeight: 440 }}>
-          <MUITable stickyHeader aria-label="sticky table">
-            <TableHeader tableConfig={tableConfig}/>
+      <TableContainer sx={{ maxHeight: maxHeight }}>
+        <MUITable stickyHeader aria-label="sticky table">
+          <TableHeader tableConfig={tableConfig}/>
 
-            {isItemsLoading ? (
-              <Box
-                width="100%"
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-                minHeight="calc(100% - 100px)"
-                position="absolute"
-              >
-                <CircularProgress size="30px" />
-              </Box>
-            ) : (
-              <TableBody tableConfig={tableConfig} items={items} />
-            )}
-          </MUITable>
-        </TableContainer>
-      </Paper>
+          {isItemsLoading ? (
+            <Box
+              width="100%"
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              minHeight="calc(100% - 100px)"
+              position="absolute"
+            >
+              <CircularProgress size="30px" />
+            </Box>
+          ) : (
+            <TableBody tableConfig={tableConfig} items={items} />
+          )}
+        </MUITable>
+      </TableContainer>
 
-      <Pagination count={5} defaultPage={1} boundaryCount={2} />
+      <Pagination/>
     </Stack>
   )
 }

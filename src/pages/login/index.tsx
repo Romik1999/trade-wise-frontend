@@ -21,7 +21,7 @@ const Login = () => {
         maxWidth="450px"
         width="100%"
         padding="20px"
-        borderRadius="10px"
+        borderRadius="0.375rem"
         sx={{
           backgroundColor: '#FFF'
         }}
@@ -30,7 +30,7 @@ const Login = () => {
           src={AppLogo}
           alt="app-logo"
           loading="lazy"
-          style={{ width: '125px', height: '125px', objectFit: 'contain', margin: '0 auto' }}
+          style={{ width: '80px', height: '80px', objectFit: 'contain', margin: '0 auto' }}
         />
 
         <Typography variant="h3" color="textPrimary" textAlign="center">

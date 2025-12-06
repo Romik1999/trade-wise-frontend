@@ -18,6 +18,7 @@ export interface ITableProps<T> {
     items?: T[];
     isItemsLoading?: boolean;
     itemsTotal?: number;
+    maxHeight?: number;
 }
 
 export interface ITableBodyProps<T> {
