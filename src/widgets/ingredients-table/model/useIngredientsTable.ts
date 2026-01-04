@@ -1,8 +1,12 @@
 import { useQuery } from '@tanstack/react-query'
 import { fetchIngredients } from '../../../entities/ingredient/api/ingredient.service.ts'
 import type { IIngredientsResponse, IUseIngredientsTableReturn } from './types.ts'
+import { useSearchParams } from 'react-router-dom'
 
 export const useIngredientsTable = () : IUseIngredientsTableReturn => {
+  const [searchParams] = useSearchParams()
+  const page = searchParams.get('page') ?? undefined
+  const pageSize = searchParams.get('pageSize') ?? undefined
 
   const {
     isPending,
@@ -10,16 +14,16 @@ export const useIngredientsTable = () : IUseIngredientsTableReturn => {
     data,
     error
   } = useQuery({
-    queryKey: ['ingredients-table'],
+    queryKey: ['ingredients-table', page, pageSize],
     queryFn: async(): Promise<IIngredientsResponse> => {
-      const response = await fetchIngredients({})
+      const response = await fetchIngredients({ page: page, per_page: pageSize })
       return response.data
     }
   })
 
   return {
     pagination: data?.pagination,
-    isPending,
+    isLoading: isPending,
     isError,
     items: data?.data,
     error

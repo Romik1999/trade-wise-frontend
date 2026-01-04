@@ -15,12 +15,12 @@ export interface IIngredientsResponse {
 export interface IIngredientsFilters {
     type_id?: number;
     search?: string;
-    page?: number;
-    per_page?: number;
+    page?: string | undefined;
+    per_page?: string | undefined;
 }
 
 export interface IUseIngredientsTableReturn {
-    isPending: boolean;
+    isLoading: boolean;
     isError: boolean;
     items: IIngredientDTO[] | undefined;
     error: Error | null;

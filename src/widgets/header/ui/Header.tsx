@@ -12,7 +12,7 @@ export interface IHeaderProps {
 export const Header:FC<IHeaderProps> = ({ onToggleSidebar, isTabletView }) => {
   return (
     <AppBar
-      position="static"
+      position="sticky"
       sx={{
         boxShadow: '0 0 0.375rem 0.25rem rgba(161, 172, 184, 0.15)',
         backgroundColor: 'background.paper',

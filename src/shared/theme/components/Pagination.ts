@@ -5,18 +5,21 @@ export const Pagination = {
         '& .MuiPaginationItem-root': {
           borderRadius: '0.25rem',
           backgroundColor: '#f0f2f4',
+          border: 'none',
 
           '&:hover': {
-            backgroundColor: '#e1e4e8'
-          }
-        },
-        '& .Mui-selected': {
-          backgroundColor: '#696cff',
-          boxShadow: '0 0.125rem 0.25rem rgba(105, 108, 255, 0.4)',
-          color: '#fff',
+            backgroundColor: '#e7e7ff',
+            color: '#696cff'
+          },
+          '&.Mui-selected': {
+            backgroundColor: '#696cff',
+            boxShadow: '0 0.125rem 0.25rem rgba(105, 108, 255, 0.4)',
+            color: '#fff',
 
-          '&:hover': {
-            backgroundColor: '#696cff!important'
+            '&:hover': {
+              backgroundColor: '#696cff!important',
+              color: '#fff!important'
+            }
           }
         }
       }
