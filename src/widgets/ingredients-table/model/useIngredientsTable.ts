@@ -7,6 +7,8 @@ export const useIngredientsTable = () : IUseIngredientsTableReturn => {
   const [searchParams] = useSearchParams()
   const page = searchParams.get('page') ?? undefined
   const pageSize = searchParams.get('pageSize') ?? undefined
+  const sortBy = searchParams.get('sort_by') ?? undefined
+  const sortDirection = searchParams.get('direction') ?? undefined
 
   const {
     isPending,
@@ -14,9 +16,11 @@ export const useIngredientsTable = () : IUseIngredientsTableReturn => {
     data,
     error
   } = useQuery({
-    queryKey: ['ingredients-table', page, pageSize],
+    queryKey: ['ingredients-table', page, pageSize, sortBy, sortDirection],
     queryFn: async(): Promise<IIngredientsResponse> => {
-      const response = await fetchIngredients({ page: page, per_page: pageSize })
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
+      const response = await fetchIngredients({ page: page, per_page: pageSize, sort_by: sortBy, direction: sortDirection })
       return response.data
     }
   })

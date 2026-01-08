@@ -2,7 +2,6 @@ import { useIngredientsTable } from '../model/useIngredientsTable.ts'
 import {
   Box,
   CircularProgress,
-  NativeSelect,
   Pagination,
   Paper,
   Stack,
@@ -16,13 +15,14 @@ import {
   Typography
 } from '@mui/material'
 import { ingredientsTableConfig } from '../config/ingredientsTableConfig.tsx'
-import { flexRender, getCoreRowModel, type Header, useReactTable } from '@tanstack/react-table'
+import { flexRender, getCoreRowModel, type Header, type SortingState, useReactTable } from '@tanstack/react-table'
 import InboxIcon from '@mui/icons-material/Inbox'
 import PaginationItem from '@mui/material/PaginationItem'
 import { Link } from 'react-router'
-import { useLocation, useSearchParams } from 'react-router-dom'
-import type { JSX } from 'react'
+import { useSearchParams } from 'react-router-dom'
+import { type JSX, useMemo } from 'react'
 import { visuallyHidden } from '@mui/utils'
+import { PageSizeSelect } from '../../../shared/ui/pageSizeSelect'
 
 export interface ITableHeaderProps<T> {
     header: Header<T, unknown>;
@@ -74,26 +74,51 @@ export const TableHeader = <T, >({ header, sortable }: ITableHeaderProps<T>): JS
   )
 }
 
+const defaultSortField = 'created_at'
+const defaultSortDirection = 'asc'
+
 export const IngredientsTable = () => {
   const { items, isLoading, pagination } = useIngredientsTable()
   const [searchParams, setSearchParams] = useSearchParams()
 
-  const location = useLocation()
-  const query = new URLSearchParams(location.search)
-  const page = parseInt(query.get('page') || '1', 10)
-  const pageSize = parseInt(searchParams.get('pageSize') || '10', 10)
+  const page = parseInt(searchParams.get('page') || '1', 10)
+  const sortBy = searchParams.get('sort_by') || defaultSortField
+  const sortDirection = searchParams.get('direction') || defaultSortDirection
 
-  const handlePageSizeChange = (event) => {
-    const newSize = event.target.value
-    const newSearchParams = new URLSearchParams(searchParams)
-    newSearchParams.set('pageSize', newSize)
-    newSearchParams.set('page', '1')
-    setSearchParams(newSearchParams)
-  }
+  const sorting = useMemo<SortingState>(() => {
+    return [{
+      id: sortBy,
+      desc: sortDirection === 'desc'
+    }]
+  }, [sortBy, sortDirection])
 
   const table = useReactTable({
     data: items,
     columns: ingredientsTableConfig,
+    state: {
+      sorting
+    },
+    onSortingChange: (updater) => {
+      const newSorting = typeof updater === 'function'
+        ? updater(sorting)
+        : updater
+
+      const newSort = newSorting[0]
+
+      if (newSort) {
+        const params = new URLSearchParams(searchParams)
+        params.set('sort_by', newSort.id)
+        params.set('direction', newSort.desc ? 'desc' : 'asc')
+        setSearchParams(params, { replace: true })
+      } else {
+        const params = new URLSearchParams(searchParams)
+        params.delete('sort_by')
+        params.delete('direction')
+        setSearchParams(params, { replace: true })
+      }
+    },
+    enableSorting: true,
+    manualSorting: true,
     getCoreRowModel: getCoreRowModel()
   })
 
@@ -178,16 +203,6 @@ export const IngredientsTable = () => {
         </TableContainer>
 
         <Stack direction="row" sx={{ justifyContent: 'space-between', padding: '16px' }}>
-          <NativeSelect
-            defaultValue={pageSize ?? 10}
-            onChange={handlePageSizeChange}
-          >
-            <option value={10}>10</option>
-            <option value={25}>25</option>
-            <option value={50}>50</option>
-            <option value={100}>100</option>
-          </NativeSelect>
-
           {pagination && items && (
             <Pagination
               count={Math.ceil(pagination?.total / pagination.per_page)}
@@ -206,6 +221,8 @@ export const IngredientsTable = () => {
               }}
             />
           )}
+
+          <PageSizeSelect/>
         </Stack>
 
       </Paper>

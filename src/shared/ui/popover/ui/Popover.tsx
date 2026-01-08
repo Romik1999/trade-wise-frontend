@@ -7,9 +7,10 @@ import { PopoverTrigger } from './PopoverTrigger.tsx'
 export interface IPopoverProps {
     children: ReactNode | ((handleClose: () => void) => ReactNode)
     trigger?: ReactNode | ((handleClick: (event: React.MouseEvent<HTMLElement>) => void) => ReactNode)
+    maxPopoverWidth?: number | string
 }
 
-export const Popover:FC<IPopoverProps> = ({ children, trigger }) => {
+export const Popover:FC<IPopoverProps> = ({ children, trigger, maxPopoverWidth = '280px' }) => {
   const { handleClick, handleClose, open, anchorEl } = usePopover()
 
   return (
@@ -26,10 +27,11 @@ export const Popover:FC<IPopoverProps> = ({ children, trigger }) => {
         slotProps={{
           paper: {
             style: {
-              maxWidth: '280px',
+              maxWidth: maxPopoverWidth,
               width: '100%',
               padding: '0',
-              borderRadius: '0.375rem'
+              borderRadius: '0.375rem',
+              boxShadow: '0 0.25rem 0.75rem 0 rgba(34, 48, 62, 0.14)'
             }
           }
         }}
