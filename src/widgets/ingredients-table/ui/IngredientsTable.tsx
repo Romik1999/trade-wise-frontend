@@ -7,8 +7,7 @@ import type { ColumnDef } from '@tanstack/react-table'
 import FileDownloadIcon from '@mui/icons-material/FileDownload'
 import IconButton from '@mui/material/IconButton'
 import AddIcon from '@mui/icons-material/Add'
-
-import { Search } from '../../../shared/ui/search/ui/Search.tsx'
+import { Search } from '../../../shared/ui/search'
 
 export const filterConfig = [
   {
