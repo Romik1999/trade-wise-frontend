@@ -1,4 +1,4 @@
-import { Box, ListItemIcon, ListItemText, MenuItem, Stack } from '@mui/material'
+import { Avatar, Box, ListItemIcon, ListItemText, MenuItem, Stack, Typography } from '@mui/material'
 import type { IIngredientDTO } from '../../../entities/ingredient/model/type.ts'
 import { formatDateTime } from '../../../shared/utils/dateFormatter.ts'
 import { createColumnHelper } from '@tanstack/react-table'
@@ -9,6 +9,7 @@ import ShareIcon from '@mui/icons-material/Share'
 import DeleteIcon from '@mui/icons-material/Delete'
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye'
 import { Fragment } from 'react'
+import InsertPhotoIcon from '@mui/icons-material/InsertPhoto'
 
 export const actionMenuConfig = [
   {
@@ -44,20 +45,43 @@ const columnHelper = createColumnHelper<IIngredientDTO>()
 
 export const ingredientsTableConfig = [
   columnHelper.accessor('name', {
-    header: 'Название',
-    size: 300,
-    cell: (ctx) => {
-      return <Box>{ctx.getValue()}</Box>
+    header: 'Компонент',
+    size: 400,
+    minSize: 300,
+    cell: ({ row: { original } }) => {
+      return (
+        <Stack direction="row" spacing="8px">
+          <Avatar variant="rounded" >
+            {original?.images?.[0]?.url ? (
+              <img alt="ingridient-image" src={original?.images?.[0]?.url ?? ''}/>
+            ) : (
+              <InsertPhotoIcon/>
+            )}
+          </Avatar>
+
+          <Stack>
+            <Typography variant="body1" color="#384551">{original.name}</Typography>
+            <Typography variant="body2">{original.description}</Typography>
+          </Stack>
+        </Stack>
+      )
     }
   }),
-  columnHelper.accessor('description', {
-    header: 'Описание',
-    size: 300,
+  columnHelper.accessor('sku', {
+    header: 'Артикул',
+    size: 170,
+    minSize: 170,
     cell: (ctx) => <Box>{ctx.getValue()}</Box>,
     enableSorting: false
   }),
   columnHelper.accessor('quantity', {
     header: 'Кол-во',
+    size: 100,
+    minSize: 100,
+    cell: (ctx) => <Box>{ctx.getValue()}</Box>
+  }),
+  columnHelper.accessor('price', {
+    header: 'Цена',
     size: 100,
     minSize: 100,
     cell: (ctx) => <Box>{ctx.getValue()}</Box>
