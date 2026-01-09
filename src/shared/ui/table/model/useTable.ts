@@ -4,9 +4,9 @@ import { getCoreRowModel, type SortingState, type Updater, useReactTable } from 
 import { defaultSortDirection, defaultSortField } from '../consts'
 import type { ITableProps } from '../types/table.types.ts'
 
-export const useTable = (
-  items: ITableProps['items'],
-  columnsConfig: ITableProps['columnsConfig']
+export const useTable = <T, > (
+  items: ITableProps<T>['items'],
+  columnsConfig: ITableProps<T>['columnsConfig']
 )=> {
   const [searchParams, setSearchParams] = useSearchParams()
 
@@ -40,7 +40,7 @@ export const useTable = (
     }
   }
 
-  const table = useReactTable({
+  const table = useReactTable<T>({
     data: items,
     columns: columnsConfig,
     state: {

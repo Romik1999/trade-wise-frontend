@@ -1,12 +1,11 @@
-import { type FC } from 'react'
 import { TableCell, TableRow } from '@mui/material'
 import { flexRender, type Row } from '@tanstack/react-table'
 
-export interface IRowDataProps {
-    row: Row<unknown>
+export interface IRowDataProps<T> {
+    row: Row<T>
 }
 
-export const RowData: FC<IRowDataProps> = ({ row }) => {
+export const RowData = <T, >({ row }: IRowDataProps<T>) => {
   return (
     <TableRow key={row.id} hover={true}>
       {row.getVisibleCells().map((cell) => (

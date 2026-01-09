@@ -22,7 +22,7 @@ export interface IIngredientsFilters {
 export interface IUseIngredientsTableReturn {
     isLoading: boolean;
     isError: boolean;
-    items: IIngredientDTO[] | undefined;
+    items: IIngredientDTO[];
     error: Error | null;
     pagination: IPagination | undefined;
 }

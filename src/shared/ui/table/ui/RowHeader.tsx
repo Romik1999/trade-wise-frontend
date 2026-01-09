@@ -1,13 +1,12 @@
-import { type FC } from 'react'
 import { TableRow } from '@mui/material'
-import type { HeaderGroup, RowData } from '@tanstack/react-table'
+import type { HeaderGroup } from '@tanstack/react-table'
 import { HeaderCell } from './HeaderCell.tsx'
 
-export interface IRowHeaderProps {
-    headerGroup: HeaderGroup<RowData>
+export interface IRowHeaderProps<T> {
+    headerGroup: HeaderGroup<T>
 }
 
-export const RowHeader: FC<IRowHeaderProps> = ({ headerGroup }) => {
+export const RowHeader = <T, >({ headerGroup }: IRowHeaderProps<T>) => {
   return (
     <TableRow key={headerGroup.id}>
       {headerGroup.headers.map((header) => (

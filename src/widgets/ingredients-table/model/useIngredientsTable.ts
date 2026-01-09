@@ -29,7 +29,7 @@ export const useIngredientsTable = () : IUseIngredientsTableReturn => {
     pagination: data?.pagination,
     isLoading: isPending,
     isError,
-    items: data?.data,
+    items: data?.data ?? [],
     error
   }
 }

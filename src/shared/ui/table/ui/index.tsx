@@ -1,4 +1,3 @@
-import { type FC } from 'react'
 import { Box, Stack, Table as MuiTable, TableBody, TableContainer, TableHead } from '@mui/material'
 import { Pagination } from '../../pagination/ui/Pagination.tsx'
 import { PageSizeSelect } from '../../pageSizeSelect'
@@ -9,14 +8,14 @@ import { RowHeader } from './RowHeader.tsx'
 import { useTable } from '../model/useTable.ts'
 import type { ITableProps } from '../types/table.types.ts'
 
-export const Table: FC<ITableProps> = ({
-  items,
+export const Table = <T, >({
+  items = [],
   columnsConfig,
   pagination,
   isLoading = false,
   maxHeight = 'calc(100vh - 285px)'
-}) => {
-  const table = useTable(items, columnsConfig)
+}: ITableProps<T>) => {
+  const table = useTable<T>(items, columnsConfig)
 
   return (
     <Box sx={{ width: '100%', overflow: 'hidden' }}>
@@ -24,7 +23,7 @@ export const Table: FC<ITableProps> = ({
         <MuiTable stickyHeader={true}>
           <TableHead>
             {table.getHeaderGroups().map((headerGroup, index) => (
-              <RowHeader
+              <RowHeader<T>
                 key={`table-header-row-item-${headerGroup.id}-${index}`}
                 headerGroup={headerGroup}
               />
@@ -38,7 +37,7 @@ export const Table: FC<ITableProps> = ({
               <RowError colSpan={columnsConfig.length} />
             ) : (
               table.getRowModel().rows.map((row, index) => (
-                <RowData
+                <RowData<T>
                   key={`table-row-item-${row.id}-${index}`}
                   row={row}
                 />

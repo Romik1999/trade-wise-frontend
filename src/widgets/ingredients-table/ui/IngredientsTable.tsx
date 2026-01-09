@@ -2,6 +2,8 @@ import { useIngredientsTable } from '../model/useIngredientsTable.ts'
 import { Box, Paper } from '@mui/material'
 import { ingredientsTableConfig } from '../config/ingredientsTableConfig.tsx'
 import { Table } from '../../../shared/ui/table'
+import type { IIngredientDTO } from '../../../entities/ingredient/model/type.ts'
+import type { ColumnDef } from '@tanstack/react-table'
 
 export const IngredientsTable = () => {
   const { items, isLoading, pagination } = useIngredientsTable()
@@ -19,9 +21,9 @@ export const IngredientsTable = () => {
         add button
       </Box>
 
-      <Table
+      <Table<IIngredientDTO>
         items={items}
-        columnsConfig={ingredientsTableConfig}
+        columnsConfig={ingredientsTableConfig as ColumnDef<IIngredientDTO>[]}
         pagination={pagination}
         isLoading={isLoading}
       />
