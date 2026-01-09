@@ -2,7 +2,6 @@ import { useIngredientsTable } from '../model/useIngredientsTable.ts'
 import {
   Box,
   CircularProgress,
-  Pagination,
   Paper,
   Stack,
   Table as MuiTable,
@@ -17,12 +16,12 @@ import {
 import { ingredientsTableConfig } from '../config/ingredientsTableConfig.tsx'
 import { flexRender, getCoreRowModel, type Header, type SortingState, useReactTable } from '@tanstack/react-table'
 import InboxIcon from '@mui/icons-material/Inbox'
-import PaginationItem from '@mui/material/PaginationItem'
-import { Link } from 'react-router'
 import { useSearchParams } from 'react-router-dom'
 import { type JSX, useMemo } from 'react'
 import { visuallyHidden } from '@mui/utils'
 import { PageSizeSelect } from '../../../shared/ui/pageSizeSelect'
+
+import { Pagination } from '../../../shared/ui/pagination/ui/Pagination.tsx'
 
 export interface ITableHeaderProps<T> {
     header: Header<T, unknown>;
@@ -202,29 +201,15 @@ export const IngredientsTable = () => {
           </MuiTable>
         </TableContainer>
 
-        <Stack direction="row" sx={{ justifyContent: 'space-between', padding: '16px' }}>
-          {pagination && items && (
+        {pagination && items && (
+          <Stack direction="row" sx={{ justifyContent: 'space-between', padding: '16px', borderTop: '1px solid rgba(224, 224, 224, 1)' }}>
             <Pagination
-              count={Math.ceil(pagination?.total / pagination.per_page)}
-              page={page ?? pagination?.current_page}
-              variant="outlined"
-              shape="rounded"
-              size="large"
-              renderItem={(item)=>{
-                return (
-                  <PaginationItem
-                    component={Link}
-                    to={createPageUrl(item.page)}
-                    {...item}
-                  />
-                )
-              }}
+              pagesCount={Math.ceil(pagination?.total / pagination.per_page)}
             />
-          )}
 
-          <PageSizeSelect/>
-        </Stack>
-
+            <PageSizeSelect/>
+          </Stack>
+        )}
       </Paper>
     </Paper>
   )
