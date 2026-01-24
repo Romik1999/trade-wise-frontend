@@ -3,16 +3,21 @@ import theme from '../shared/theme'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { RouterProvider } from 'react-router-dom'
 import Router from './routes'
-import React from 'react'
+import { LocalizationProvider } from '@mui/x-date-pickers'
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
+import { useState } from 'react'
+import { ru } from 'date-fns/locale/ru'
 
 function App() {
-  const [queryClient] = React.useState(() => new QueryClient())
+  const [queryClient] = useState(() => new QueryClient())
 
   return (
     <ThemeProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
-        <RouterProvider router={Router} />
-        {/*<ReactQueryDevtools initialIsOpen={false} />*/}
+        <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={ru}>
+          <RouterProvider router={Router} />
+          {/*<ReactQueryDevtools initialIsOpen={false} />*/}
+        </LocalizationProvider>
       </QueryClientProvider>
     </ThemeProvider>
   )

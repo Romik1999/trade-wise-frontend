@@ -5,6 +5,7 @@ import { responsiveFontSizes } from '@mui/material'
 import { TextField } from './components/TextField'
 import { Drawer } from './components/Drawer.ts'
 import { Pagination } from './components/Pagination.ts'
+import { TableRow } from './components/TableRow.ts'
 
 let theme = createTheme({
   palette,
@@ -12,7 +13,8 @@ let theme = createTheme({
   components: {
     MuiTextField: { ...TextField },
     MuiDrawer: { ...Drawer },
-    MuiPagination: { ...Pagination }
+    MuiPagination: { ...Pagination },
+    MuiTableRow: { ...TableRow }
   }
 })
 
