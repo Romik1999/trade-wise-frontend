@@ -50,7 +50,7 @@ export const IngredientsTable = () => {
         columnsConfig={ingredientsTableConfig as ColumnDef<IIngredientDTO>[]}
         pagination={pagination}
         isLoading={isLoading}
-        maxHeight="calc(100vh - 350px)"
+        maxHeight="calc(100vh - 400px)"
       />
     </Paper>
   )
