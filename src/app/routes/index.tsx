@@ -10,6 +10,7 @@ import { Settings } from '../../pages/settings'
 import { Notifications } from '../../pages/notifications'
 import { Ingredients } from '../../pages/ingredients'
 import { Products } from '../../pages/products'
+import { Ingredient } from '../../pages/ingridient'
 
 const Router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ const Router = createBrowserRouter([
       {
         path: FULL_ROUTES.PRIVATE.COMPONENTS,
         element: <Ingredients />
+      },
+      {
+        path: FULL_ROUTES.PRIVATE.COMPONENT,
+        element: <Ingredient />
       },
       {
         path: FULL_ROUTES.PRIVATE.PRODUCTS,

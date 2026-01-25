@@ -1,5 +1,5 @@
 import { useSearchParams } from 'react-router-dom'
-import { useMemo } from 'react'
+import { useMemo, useRef } from 'react'
 import { getCoreRowModel, type SortingState, type Updater, useReactTable } from '@tanstack/react-table'
 import { defaultSortDirection, defaultSortField } from '../consts'
 import type { ITableProps } from '../types/table.types.ts'
@@ -9,6 +9,7 @@ export const useTable = <T, > (
   columnsConfig: ITableProps<T>['columnsConfig']
 )=> {
   const [searchParams, setSearchParams] = useSearchParams()
+  const tableContainerRef = useRef<HTMLDivElement>(null)
 
   const sortBy = searchParams.get('sort_by') || defaultSortField
   const sortDirection = searchParams.get('direction') || defaultSortDirection
@@ -52,5 +53,5 @@ export const useTable = <T, > (
     getCoreRowModel: getCoreRowModel()
   })
 
-  return table
+  return { table, tableContainerRef }
 }

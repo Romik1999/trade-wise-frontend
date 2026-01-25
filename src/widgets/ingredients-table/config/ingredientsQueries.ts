@@ -1,6 +1,6 @@
 export const INGREDIENTS_QUERIES = [
   'page',
-  'pageSize',
+  'per_page',
   'sort_by',
   'direction',
   'search',

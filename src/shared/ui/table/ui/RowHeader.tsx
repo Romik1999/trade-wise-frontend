@@ -1,21 +1,16 @@
-import { TableRow } from '@mui/material'
-import type { HeaderGroup } from '@tanstack/react-table'
+import { Box } from '@mui/material'
 import { HeaderCell } from './HeaderCell.tsx'
-
-export interface IRowHeaderProps<T> {
-    headerGroup: HeaderGroup<T>
-}
+import type { IRowHeaderProps } from '../types/table.types.ts'
 
 export const RowHeader = <T, >({ headerGroup }: IRowHeaderProps<T>) => {
   return (
-    <TableRow key={headerGroup.id}>
+    <Box key={headerGroup.id} sx={{ width: '100%', display: 'flex' }}>
       {headerGroup.headers.map((header) => (
         <HeaderCell
           key={header.id}
           header={header}
-          sortable={true}
         />
       ))}
-    </TableRow>
+    </Box>
   )
 }

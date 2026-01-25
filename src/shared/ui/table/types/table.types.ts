@@ -1,4 +1,6 @@
-import type { ColumnDef } from '@tanstack/react-table'
+import type { Cell, ColumnDef, Header, HeaderGroup, Row, Table } from '@tanstack/react-table'
+import type { RefObject } from 'react'
+import type { VirtualItem, Virtualizer } from '@tanstack/react-virtual'
 
 interface IPagination {
     total: number;
@@ -12,4 +14,33 @@ export interface ITableProps<T> {
     pagination?: IPagination
     isLoading?: boolean
     maxHeight?: string
+}
+
+export interface ITableBodyProps<T> {
+    isLoading: boolean
+    table: Table<T>
+    tableContainerRef: RefObject<HTMLDivElement | null>
+    columnsConfigLength: number
+}
+
+export interface ITableHeaderProps<T> {
+    table: Table<T>
+}
+
+export interface IRowHeaderProps<T> {
+    headerGroup: HeaderGroup<T>
+}
+
+export interface IHeaderCellProps<T> {
+    header: Header<T, unknown>;
+}
+
+export interface IRowDataProps<T> {
+    row: Row<T>
+    virtualRow: VirtualItem
+    rowVirtualizer: Virtualizer<HTMLDivElement, HTMLTableRowElement>
+}
+
+export interface IBodyCellProps<T> {
+    cell: Cell<T, unknown>
 }
