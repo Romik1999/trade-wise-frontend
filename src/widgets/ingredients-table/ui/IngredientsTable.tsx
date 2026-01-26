@@ -10,6 +10,8 @@ import AddIcon from '@mui/icons-material/Add'
 import { Search } from '../../../shared/ui/search'
 import { type FilterConfig, Filters } from '../../../shared/ui/filters'
 import { ingredientsFiltersConfig } from '../config/ingredientsFiltersConfig.ts'
+import { Link } from 'react-router-dom'
+import { FULL_ROUTES } from '../../../shared/constants/routes.ts'
 
 export const IngredientsTable = () => {
   const { items, isLoading, pagination } = useIngredientsTable()
@@ -37,7 +39,12 @@ export const IngredientsTable = () => {
               <FileDownloadIcon/>
             </IconButton>
 
-            <Button color="primary" variant="contained">
+            <Button
+              component={Link}
+              to={FULL_ROUTES.PRIVATE.COMPONENT_CREATE}
+              color="primary"
+              variant="contained"
+            >
               <AddIcon fontSize="small" />
               Добавить компонент
             </Button>

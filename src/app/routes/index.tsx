@@ -8,9 +8,8 @@ import { FULL_ROUTES } from '../../shared/constants/routes.ts'
 import { Profile } from '../../pages/profile'
 import { Settings } from '../../pages/settings'
 import { Notifications } from '../../pages/notifications'
-import { Ingredients } from '../../pages/ingredients'
 import { Products } from '../../pages/products'
-import { Ingredient } from '../../pages/ingridient'
+import { IngredientCreate, IngredientDetail, IngredientList } from '../../pages/ingredients'
 
 const Router = createBrowserRouter([
   {
@@ -47,11 +46,15 @@ const Router = createBrowserRouter([
       },
       {
         path: FULL_ROUTES.PRIVATE.COMPONENTS,
-        element: <Ingredients />
+        element: <IngredientList />
       },
       {
         path: FULL_ROUTES.PRIVATE.COMPONENT,
-        element: <Ingredient />
+        element: <IngredientDetail />
+      },
+      {
+        path: FULL_ROUTES.PRIVATE.COMPONENT_CREATE,
+        element: <IngredientCreate />
       },
       {
         path: FULL_ROUTES.PRIVATE.PRODUCTS,
