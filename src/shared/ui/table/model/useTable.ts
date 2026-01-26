@@ -10,7 +10,7 @@ export const useTable = <T, > (
 )=> {
   const [searchParams, setSearchParams] = useSearchParams()
   const tableContainerRef = useRef<HTMLDivElement>(null)
-
+  console.log({ tableContainerRef })
   const sortBy = searchParams.get('sort_by') || defaultSortField
   const sortDirection = searchParams.get('direction') || defaultSortDirection
 

@@ -1,18 +1,13 @@
-import { type FC } from 'react'
-import { Box, CircularProgress, TableCell, TableRow } from '@mui/material'
+import { Box, CircularProgress } from '@mui/material'
 
-export interface ILoadingRowProps {
-    colSpan?: number
-}
-
-export const RowLoading: FC<ILoadingRowProps> = ({ colSpan = 1 }) => {
+export const RowLoading = () => {
   return (
-    <TableRow>
-      <TableCell colSpan={colSpan} align="center">
+    <Box>
+      <Box sx={{ width: '100%' }}>
         <Box display="flex" justifyContent="center" alignItems="center">
           <CircularProgress />
         </Box>
-      </TableCell>
-    </TableRow>
+      </Box>
+    </Box>
   )
 }

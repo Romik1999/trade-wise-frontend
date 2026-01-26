@@ -5,8 +5,9 @@ import { BodyCell } from './BodyCell.tsx'
 export const RowData = <T, >({ row, virtualRow, rowVirtualizer }: IRowDataProps<T>) => {
   return (
     <Box
+      key={virtualRow.key}
       data-index={virtualRow.index}
-      ref={(node) => rowVirtualizer.measureElement(node)}
+      ref={rowVirtualizer.measureElement}
       sx={{
         position: 'absolute',
         transform: `translateY(${virtualRow.start}px)`,

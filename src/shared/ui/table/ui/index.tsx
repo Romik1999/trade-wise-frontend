@@ -5,6 +5,7 @@ import { useTable } from '../model/useTable.ts'
 import type { ITableProps } from '../types/table.types.ts'
 import { TableBody } from './TableBody.tsx'
 import { TableHeader } from './TableHeader.tsx'
+import { RowLoading } from './RowLoading.tsx'
 
 export const Table = <T, >({
   items = [],
@@ -17,17 +18,19 @@ export const Table = <T, >({
 
   return (
     <Box sx={{ width: '100%', overflow: 'hidden' }}>
-      <Box ref={tableContainerRef} sx={{ maxHeight: maxHeight, overflowX: 'auto' }}>
-        <Box>
-          <TableHeader<T> table={table} />
+      <Box ref={tableContainerRef} sx={{ height: maxHeight, overflowX: 'auto' }}>
+        <TableHeader<T> table={table} />
 
+        {isLoading ? (
+          <RowLoading />
+        ) : (
           <TableBody<T>
             isLoading={isLoading}
             table={table}
             tableContainerRef={tableContainerRef}
-            columnsConfigLength={columnsConfig?.length}
           />
-        </Box>
+        )}
+
       </Box>
 
       {pagination && items && (

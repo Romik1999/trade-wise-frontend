@@ -20,7 +20,6 @@ export interface ITableBodyProps<T> {
     isLoading: boolean
     table: Table<T>
     tableContainerRef: RefObject<HTMLDivElement | null>
-    columnsConfigLength: number
 }
 
 export interface ITableHeaderProps<T> {
@@ -38,7 +37,7 @@ export interface IHeaderCellProps<T> {
 export interface IRowDataProps<T> {
     row: Row<T>
     virtualRow: VirtualItem
-    rowVirtualizer: Virtualizer<HTMLDivElement, HTMLTableRowElement>
+    rowVirtualizer: Virtualizer<HTMLDivElement, HTMLDivElement>
 }
 
 export interface IBodyCellProps<T> {
